@@ -5,36 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Partecipazione di Matrimonio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="envelope-wrapper" onclick="openEnvelope()">
-        <div class="envelope">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="letter">
-                <div class="letter-content">
-                    <p class="subtitle">Ci Sposiamo!</p>
-                    <h1>Marco & Sofia</h1>
-                    <p class="date">25 Giugno 2027</p>
-                    <p class="details">
-                        Siamo felici di invitarvi a festeggiare insieme a noi il giorno più bello della nostra vita.
-                    </p>
-                    <p class="location">
-                        📍 <strong>Cerimonia e Ricevimento:</strong><br>
-                        Villa Dei Fiori, Roma<br>
-                        Ore 16:30
-                    </p>
-                    <a href="https://wa.me/393331234567?text=Ciao!%20Confermo%20la%20mia%20presenza%20al%20matrimonio!" target="_blank" class="btn-rsvp">Conferma Presenza (RSVP)</a>
+    <div class="wrapper">
+        <div class="envelope-container" onclick="toggleEnvelope()">
+            <div class="envelope">
+                <div class="back-fold"></div>
+                <div class="letter">
+                    <div class="letter-border">
+                        <p class="monogram">D & N</p>
+                        <p class="subtitle">Anunciano il loro matrimonio</p>
+                        <h1 class="names">Daniel & Noa</h1>
+                        <div class="divider">✦</div>
+                        <p class="date">Domenica, 6 Giugno 2027</p>
+                        <p class="details">
+                            Siamo felici di invitarvi a condividere con noi la gioia di questo giorno speciale.
+                        </p>
+                        <div class="info-box">
+                            <p class="location-title">📍 CERIMONIA E RICEVIMENTO</p>
+                            <p class="location">Villa Dei Desideri — Cerveteri</p>
+                            <p class="time">Ore 18:00</p>
+                        </div>
+                        <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio!" target="_blank" class="rsvp-btn">
+                            CONFERMA PRESENZA
+                        </a>
+                    </div>
                 </div>
+                <div class="pocket"></div>
+                <div class="top-fold"></div>
+                <div class="seal">M&S</div>
             </div>
+            <p class="click-hint">✨ Clicca sul sigillo per aprire l'invito ✨</p>
         </div>
-        <p class="click-hint">✨ Clicca sulla busta per aprirla ✨</p>
     </div>
 
     <script>
-        function openEnvelope() {
+        function toggleEnvelope() {
+            document.querySelector('.envelope-container').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>        function openEnvelope() {
             document.querySelector('.envelope-wrapper').classList.add('open');
         }
     </script>
