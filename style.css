@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f7f3ef;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.click-hint {
+    margin-top: 30px;
+    color: #8c7a6b;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    background-color: #e0d5c1;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    margin: 0 auto;
+}
+
+/* Patta superiore della busta */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 130px solid #d4c5b0;
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out, z-index 0.6s;
+    z-index: 3;
+}
+
+/* Tasca frontale della busta */
+.pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid #ebdccb;
+    border-right: 160px solid #ebdccb;
+    border-bottom: 120px solid #dfcfbc;
+    border-radius: 0 0 10px 10px;
+    z-index: 2;
+}
+
+/* Lettera interna */
+.letter {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    width: 290px;
+    height: 190px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.8s ease-in-out 0.4s, height 0.8s ease-in-out 0.4s;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.letter-content {
+    opacity: 0;
+    transition: opacity 0.5s ease 0.8s;
+}
+
+.letter h1 {
+    font-family: 'Great Vibes', cursive;
+    color: #8c6d53;
+    font-size: 2.2rem;
+    margin: 5px 0;
+}
+
+.subtitle {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #a39281;
+}
+
+.date {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.details {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.location {
+    font-size: 0.75rem;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.btn-rsvp {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #8c6d53;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Animazione all'apertura */
+.open .flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.open .letter {
+    transform: translateY(-160px);
+    height: 350px;
+    z-index: 4;
+}
+
+.open .letter-content {
+    opacity: 1;
+}
+
+.open .click-hint {
+    display: none;
+}
