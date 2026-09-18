@@ -3,38 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partecipazione di Matrimonio</title>
+    <title>Partecipazione di Matrimonio - Daniel & Noa</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Great+Vibes&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="envelope-container" onclick="toggleEnvelope()">
-            <div class="envelope">
-                <div class="back-fold"></div>
-                <div class="letter">
-                    <div class="letter-border">
-                        <p class="monogram">D & N</p>
-                        <p class="subtitle">Anunciano il loro matrimonio</p>
-                        <h1 class="names">Daniel & Noa</h1>
-                        <div class="divider">✦</div>
-                        <p class="date">Domenica, 6 Giugno 2027</p>
-                        <p class="details">
-                            Siamo felici di invitarvi a condividere con noi la gioia di questo giorno speciale.
-                        </p>
-                        <div class="info-box">
-                            <p class="location-title">📍 CERIMONIA E RICEVIMENTO</p>
-                            <p class="location">Villa Dei Desideri — Cerveteri</p>
-                            <p class="time">Ore 18:00</p>
-                        </div>
-                        <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio!" target="_blank" class="rsvp-btn">
-                            CONFERMA PRESENZA
-                        </a>
+    <div class="card-wrapper" onclick="openCard()">
+        <div class="card">
+            
+            <!-- COPERTINA (Nastro + Ceralacca) -->
+            <div class="cover">
+                <div class="ribbon-vertical"></div>
+                <div class="ribbon-bow"></div>
+                <div class="wax-seal">
+                    <span>DN</span>
+                </div>
+                <p class="click-hint">✨ Clicca per aprire ✨</p>
+            </div>
+
+            <!-- FOGLIO INTERNO PIEGHEVOLE -->
+            <div class="inner-paper">
+                <div class="paper-texture"></div>
+                
+                <!-- PARTE SUPERIORE -->
+                <div class="section-top">
+                    <h1 class="script-names">Daniel</h1>
+                    <span class="ampersand">&</span>
+                    <h1 class="script-names">Noa</h1>
+                    <p class="announcement">annunciano il loro matrimonio</p>
+                </div>
+
+                <div class="line-divider"></div>
+
+                <!-- PARTE CENTRALE -->
+                <div class="section-middle">
+                    <p class="day-name">Sabato</p>
+                    <p class="script-date">15 Giugno 2027</p>
+                    <p class="time">ore 16:00</p>
+                    
+                    <div class="location-group">
+                        <p class="script-location">Chiesa Santa Maria</p>
+                        <p class="address">Roma</p>
                     </div>
                 </div>
-                <div class="pocket"></div>
-                <div class="top-fold"></div>
+
+                <div class="line-divider"></div>
+
+                <!-- PARTE INFERIORE -->
+                <div class="section-bottom">
+                    <p class="reception-text">Dopo la cerimonia saremo lieti di festeggiare con voi presso</p>
+                    <p class="script-location">Villa Rosa Eventi</p>
+                    <p class="address">Via Rosa 12, Roma</p>
+
+                    <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa!" target="_blank" class="rsvp-btn">
+                        Conferma Presenza (RSVP)
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCard() {
+            document.querySelector('.card-wrapper').classList.toggle('is-open');
+        }
+    </script>
+</body>
+</html>                <div class="top-fold"></div>
                 <div class="seal">M&S</div>
             </div>
             <p class="click-hint">✨ Clicca sul sigillo per aprire l'invito ✨</p>
