@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partecipazione di Matrimonio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="pocket"></div>
+            <div class="letter">
+                <div class="letter-content">
+                    <p class="subtitle">Ci Sposiamo!</p>
+                    <h1>Marco & Sofia</h1>
+                    <p class="date">25 Giugno 2027</p>
+                    <p class="details">
+                        Siamo felici di invitarvi a festeggiare insieme a noi il giorno più bello della nostra vita.
+                    </p>
+                    <p class="location">
+                        📍 <strong>Cerimonia e Ricevimento:</strong><br>
+                        Villa Dei Fiori, Roma<br>
+                        Ore 16:30
+                    </p>
+                    <a href="https://wa.me/393331234567?text=Ciao!%20Confermo%20la%20mia%20presenza%20al%20matrimonio!" target="_blank" class="btn-rsvp">Conferma Presenza (RSVP)</a>
+                </div>
+            </div>
+        </div>
+        <p class="click-hint">✨ Clicca sulla busta per aprirla ✨</p>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.querySelector('.envelope-wrapper').classList.add('open');
+        }
+    </script>
+</body>
+</html>
