@@ -1,6 +1,6 @@
-/* ==========================================
+/* =========================================================
    RESET
-========================================== */
+========================================================= */
 
 * {
   margin: 0;
@@ -12,244 +12,167 @@ html {
   scroll-behavior: smooth;
 }
 
+:root {
+  --bg: #f1eee9;
+  --paper: #fdfbf7;
+  --paper2: #f8f5ef;
+  --taupe: #b6a99d;
+  --taupe-dark: #9d8e82;
+  --text: #a99b90;
+  --line: rgba(171, 156, 143, .58);
+  --wax: #6f5141;
+}
+
 body {
-
-  min-height: 100vh;
-
-  background:
-    radial-gradient(
-      circle at 50% 25%,
-      #f9f7f3 0%,
-      #f3efe9 55%,
-      #ebe6df 100%
-    );
-
-  color: #b8aa9e;
-
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Cormorant Garamond", Georgia, serif;
   overflow-x: hidden;
 }
 
-
-/* ==========================================
-   VARIABLES
-========================================== */
-
-:root {
-
-  --paper: #fdfcf9;
-
-  --paper-dark: #f7f4ef;
-
-  --taupe: #b9aca1;
-
-  --taupe-dark: #a99a8e;
-
-  --line: #c7bbb0;
-
-  --text: #b1a397;
-
-  --shadow:
-    0 25px 60px
-    rgba(69, 55, 43, 0.12);
-
+button {
+  font: inherit;
 }
 
 
-/* ==========================================
-   PAGE
-========================================== */
+/* =========================================================
+   EXPERIENCE
+========================================================= */
 
-.page {
+.experience {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   ENVELOPE STAGE
+========================================================= */
+
+.envelope-stage {
+  position: relative;
 
   width: 100%;
+  height: 100svh;
+  min-height: 720px;
 
-  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  padding-bottom: 130px;
+  overflow: hidden;
 
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      #faf8f4 0%,
+      #f2eee8 60%,
+      #ebe6df 100%
+    );
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
 }
 
 
-/* ==========================================
-   INTRO
-========================================== */
+.top-date {
+  position: absolute;
+  top: 42px;
+  left: 50%;
 
-.intro {
-
-  min-height: 52vh;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
+  transform: translateX(-50%);
 
   text-align: center;
 
-}
-
-
-.intro-monogram {
-
-  font-family:
-    "Italiana",
-    serif;
-
-  font-size:
-    clamp(150px, 22vw, 280px);
-
-  font-weight: 400;
-
-  line-height: .8;
-
-  color: #c5b9af;
-
-  opacity: .9;
-
-}
-
-
-.intro-date {
-
-  margin-top: 40px;
-
-  font-size: 12px;
-
-  letter-spacing: .22em;
-
-}
-
-
-.scroll-line {
-
-  width: 1px;
-
-  height: 55px;
-
-  background: var(--line);
-
-  margin: 30px 0 18px;
-
-}
-
-
-.intro-instruction {
-
-  font-family:
-    "Montserrat",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   font-size: 8px;
-
   letter-spacing: .35em;
 
-  color: #a89b90;
+  color: var(--taupe-dark);
+}
 
+.top-date span {
+  display: block;
+  margin-top: 9px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 11px;
+  letter-spacing: .2em;
 }
 
 
-/* ==========================================
-   SCENE
-========================================== */
+/* =========================================================
+   ENVELOPE WRAP
+========================================================= */
 
-.invitation-scene {
-
-  width: 100%;
-
-  min-height: 850px;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: flex-start;
-
-  padding: 50px 20px 150px;
-
-  perspective: 2200px;
-
-}
-
-
-/* ==========================================
-   INVITATION WRAPPER
-========================================== */
-
-.invitation-wrapper {
-
+.envelope-wrap {
   position: relative;
 
-  width:
-    min(520px, 88vw);
+  width: min(620px, 90vw);
 
-  height: 690px;
+  perspective: 1800px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* =========================================================
+   ENVELOPE
+========================================================= */
+
+.envelope {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1.48 / 1;
 
   transform-style: preserve-3d;
 
-  transition:
-    height 1.5s
-    cubic-bezier(.76,0,.24,1);
-
+  filter:
+    drop-shadow(
+      0 30px 35px
+      rgba(66, 51, 40, .14)
+    );
 }
 
 
-/* ==========================================
-   PAPER PANEL
-========================================== */
-
-.card-panel {
-
+.envelope-back {
   position: absolute;
+  inset: 0;
 
-  left: 0;
-
-  width: 100%;
-
-  height: 690px;
+  z-index: 1;
 
   background:
-
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(255,255,255,.85),
-      transparent 45%
-    ),
-
     linear-gradient(
       145deg,
-      var(--paper),
-      var(--paper-dark)
+      #fdfbf6,
+      #eee8df
     );
 
   border:
     1px solid
-    rgba(170, 155, 140, .13);
-
-  box-shadow:
-    var(--shadow);
-
-  transform-style: preserve-3d;
-
-  backface-visibility: hidden;
-
+    rgba(150, 130, 115, .13);
 }
 
 
-/* subtle paper texture */
+/* =========================================================
+   PAPER TEXTURE
+========================================================= */
 
-.card-panel::after {
+.envelope-back::after,
+.flap::after,
+.envelope-front::after,
+.closed-card::after,
+.panel::after {
 
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
@@ -257,26 +180,644 @@ body {
   opacity: .17;
 
   background-image:
-
     repeating-radial-gradient(
-      circle at 20% 30%,
-      rgba(130,110,90,.13) 0,
-      rgba(130,110,90,.13) .5px,
-      transparent .8px,
+      circle at 30% 40%,
+      rgba(112, 91, 73, .12) 0,
+      rgba(112, 91, 73, .12) .45px,
+      transparent .7px,
       transparent 4px
     );
 
   mix-blend-mode: multiply;
-
 }
 
 
-/* ==========================================
-   BORDER
-========================================== */
+/* =========================================================
+   FLAP
+========================================================= */
 
-.paper-border {
+.flap {
+  position: absolute;
 
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 60%;
+
+  z-index: 8;
+
+  transform-origin: top center;
+
+  background:
+    linear-gradient(
+      160deg,
+      #fcfaf5,
+      #e9e2d8
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  backface-visibility: hidden;
+
+  transition:
+    transform
+    1.15s
+    cubic-bezier(.76,0,.24,1),
+    z-index .1s linear .55s;
+}
+
+
+/* =========================================================
+   ENVELOPE FRONT
+========================================================= */
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+
+  z-index: 6;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.front-left,
+.front-right,
+.front-bottom {
+  position: absolute;
+  inset: 0;
+}
+
+
+.front-left {
+  background: #f2ede5;
+
+  clip-path:
+    polygon(
+      0 0,
+      52% 53%,
+      0 100%
+    );
+}
+
+
+.front-right {
+  background: #ebe5dc;
+
+  clip-path:
+    polygon(
+      100% 0,
+      48% 53%,
+      100% 100%
+    );
+}
+
+
+.front-bottom {
+  background:
+    linear-gradient(
+      to top,
+      #faf7f1,
+      #e8e1d7
+    );
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 50%,
+      100% 100%
+    );
+}
+
+
+/* =========================================================
+   RIBBON
+========================================================= */
+
+.ribbon {
+  position: absolute;
+
+  z-index: 12;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      #bca98c 0%,
+      #e8dcc4 22%,
+      #c5b293 47%,
+      #efe5d2 72%,
+      #bca789 100%
+    );
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.8),
+    inset 0 -2px 4px rgba(80,60,40,.12);
+
+  transition:
+    transform .9s ease,
+    opacity .65s ease;
+}
+
+
+.ribbon-h {
+  width: 100%;
+  height: 45px;
+
+  top: 50%;
+  left: 0;
+
+  transform:
+    translateY(-50%);
+}
+
+
+.ribbon-v {
+  width: 45px;
+  height: 100%;
+
+  top: 0;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      #b8a486,
+      #eee3ce 48%,
+      #b8a486
+    );
+}
+
+
+/* =========================================================
+   WAX
+========================================================= */
+
+.wax-seal {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 94px;
+  height: 94px;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-6deg);
+
+  z-index: 15;
+
+  border: 0;
+
+  border-radius:
+    46% 54% 49% 51% /
+    52% 46% 54% 48%;
+
+  cursor: pointer;
+
+  color: #d8c2ac;
+
+  background:
+    radial-gradient(
+      circle at 32% 25%,
+      #96705b,
+      #71503f 48%,
+      #51362b 100%
+    );
+
+  box-shadow:
+    0 8px 14px rgba(52,32,23,.28),
+    inset 2px 2px 5px rgba(255,255,255,.14),
+    inset -3px -4px 7px rgba(40,20,13,.28);
+
+  transition:
+    transform .7s ease,
+    opacity .6s ease;
+}
+
+
+.wax-inner {
+  position: absolute;
+  inset: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border:
+    1px solid
+    rgba(220,195,170,.5);
+
+  border-radius: 50%;
+
+  font-family: "Italiana", serif;
+
+  font-size: 16px;
+
+  letter-spacing: .08em;
+}
+
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.open-envelope-label {
+  margin-top: 42px;
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: .4em;
+
+  color: var(--taupe-dark);
+
+  transition:
+    opacity .4s ease;
+}
+
+
+/* =========================================================
+   CLOSED CARD
+========================================================= */
+
+.closed-card {
+  position: absolute;
+
+  z-index: 3;
+
+  left: 17%;
+  top: 12%;
+
+  width: 66%;
+  height: 105%;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--paper),
+      var(--paper2)
+    );
+
+  box-shadow:
+    0 15px 30px rgba(60,45,35,.1);
+
+  transform:
+    translateY(25%)
+    scale(.92);
+
+  opacity: 0;
+
+  transition:
+    transform 1.35s
+    cubic-bezier(.22,1,.36,1),
+    opacity .7s ease;
+}
+
+
+.card-line {
+  position: absolute;
+  inset: 9px;
+
+  border: 1px solid var(--line);
+}
+
+
+.bh-small {
+  position: absolute;
+
+  right: 22px;
+  top: 20px;
+
+  direction: rtl;
+
+  z-index: 5;
+}
+
+
+.closed-watermark {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-8deg);
+
+  font-family: "Italiana", serif;
+
+  font-size: 160px;
+
+  color: var(--taupe);
+
+  opacity: .07;
+
+  white-space: nowrap;
+}
+
+
+.closed-content {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 65px 30px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+
+.closed-hebrew {
+  direction: rtl;
+
+  font-size: 17px;
+}
+
+
+.closed-translation {
+  margin-top: 12px;
+
+  font-size: 8px;
+
+  line-height: 1.5;
+
+  letter-spacing: .06em;
+}
+
+
+.closed-content h1 {
+  margin-top: 45px;
+
+  font-size: 29px;
+
+  font-weight: 400;
+
+  letter-spacing: .03em;
+
+  line-height: .95;
+}
+
+
+.closed-content h1 span {
+  font-style: italic;
+  font-weight: 300;
+}
+
+
+.closed-date {
+  margin-top: 30px;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+
+  letter-spacing: .13em;
+}
+
+
+.closed-hebrew-date {
+  margin-top: 12px;
+
+  direction: rtl;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   ENVELOPE OPEN STATES
+========================================================= */
+
+.envelope-wrap.opening
+.wax-seal {
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.4)
+    rotate(30deg);
+}
+
+
+.envelope-wrap.opening
+.ribbon-h {
+
+  opacity: 0;
+
+  transform:
+    translateY(-50%)
+    scaleX(1.25);
+}
+
+
+.envelope-wrap.opening
+.ribbon-v {
+
+  opacity: 0;
+
+  transform:
+    translateX(-50%)
+    scaleY(1.2);
+}
+
+
+.envelope-wrap.flap-open
+.flap {
+
+  transform:
+    rotateX(180deg);
+
+  z-index: 0;
+}
+
+
+.envelope-wrap.card-out
+.closed-card {
+
+  opacity: 1;
+
+  z-index: 20;
+
+  transform:
+    translateY(-58%)
+    scale(1);
+}
+
+
+.envelope-wrap.opening
+.open-envelope-label {
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ENVELOPE EXIT
+========================================================= */
+
+.envelope-stage.exit {
+
+  opacity: 0;
+
+  transform:
+    translateY(-40px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD STAGE
+========================================================= */
+
+.card-stage {
+  display: none;
+
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding:
+    70px 20px
+    130px;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      #faf8f4,
+      #f0ece6 75%
+    );
+
+  perspective: 2200px;
+}
+
+
+.card-stage.visible {
+  display: block;
+}
+
+
+.card-stage-header {
+  margin-bottom: 55px;
+
+  text-align: center;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: .35em;
+}
+
+
+.card-stage-header span {
+  display: block;
+
+  margin-top: 9px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 11px;
+
+  letter-spacing: .18em;
+}
+
+
+/* =========================================================
+   INVITATION
+========================================================= */
+
+.invitation {
+  position: relative;
+
+  width: min(520px, 92vw);
+  height: 690px;
+
+  margin: 0 auto;
+
+  transform-style: preserve-3d;
+
+  transition:
+    height 1.8s
+    cubic-bezier(.76,0,.24,1);
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.panel {
+  position: absolute;
+
+  left: 0;
+
+  width: 100%;
+  height: 690px;
+
+  overflow: hidden;
+
+  transform-style: preserve-3d;
+
+  backface-visibility: hidden;
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,255,255,.8),
+      transparent 45%
+    ),
+    linear-gradient(
+      145deg,
+      var(--paper),
+      var(--paper2)
+    );
+
+  border:
+    1px solid
+    rgba(160,145,130,.12);
+
+  box-shadow:
+    0 22px 55px
+    rgba(65,50,40,.1);
+}
+
+
+.panel-border {
   position: absolute;
 
   inset: 10px;
@@ -285,240 +826,165 @@ body {
     1px solid
     var(--line);
 
-  opacity: .72;
-
-  z-index: 5;
+  z-index: 8;
 
   pointer-events: none;
-
 }
 
 
-/* ==========================================
-   INNER CONTENT
-========================================== */
-
-.panel-inner {
-
+.panel-content {
   position: relative;
 
-  z-index: 3;
+  z-index: 4;
 
   width: 100%;
-
   height: 100%;
 
-  padding: 70px 55px;
+  padding: 55px 50px;
 
+  text-align: center;
 }
 
 
-/* ==========================================
+/* =========================================================
    WATERMARK
-========================================== */
+========================================================= */
 
 .watermark {
-
   position: absolute;
 
   left: 50%;
-
   top: 50%;
 
   transform:
-    translate(-50%, -50%);
+    translate(-50%, -50%)
+    rotate(-7deg);
 
-  font-family:
-    "Italiana",
-    serif;
+  font-family: "Italiana", serif;
 
-  font-size: 560px;
+  font-size: 250px;
 
-  line-height: 1;
+  line-height: .8;
 
   color: var(--taupe);
 
-  opacity: .075;
+  opacity: .055;
+
+  white-space: nowrap;
 
   pointer-events: none;
-
-  z-index: 1;
-
 }
 
 
-.watermark-center {
-
-  top: 47%;
-
+.watermark-middle {
+  top: 45%;
 }
 
 
 .watermark-bottom {
-
-  top: 38%;
-
+  top: 43%;
 }
 
 
-/* ==========================================
-   BH
-========================================== */
+/* =========================================================
+   PANEL 1
+========================================================= */
+
+.panel-1 {
+  top: 0;
+  z-index: 20;
+}
+
 
 .bh {
-
   position: absolute;
 
-  top: 25px;
-
-  right: 27px;
+  top: 26px;
+  right: 28px;
 
   z-index: 10;
 
   direction: rtl;
-
-  font-size: 17px;
-
-  color: var(--taupe-dark);
-
-}
-
-
-/* ==========================================
-   PANEL ONE
-========================================== */
-
-.panel-one {
-
-  top: 0;
-
-  z-index: 10;
-
-}
-
-
-.hebrew {
-
-  direction: rtl;
-
-  text-align: center;
-
-  font-family:
-    Georgia,
-    serif;
-
-  font-size: 20px;
-
-  margin-top: 25px;
-
-  color: var(--taupe-dark);
-
-}
-
-
-.blessing {
-
-  margin-top: 14px;
-
-  text-align: center;
-
-  font-size: 12px;
-
-  letter-spacing: .04em;
-
-  line-height: 1.6;
-
-}
-
-
-.parents-row {
-
-  position: absolute;
-
-  left: 55px;
-
-  right: 55px;
-
-  bottom: 100px;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  text-align: center;
 
   font-size: 16px;
-
 }
 
 
-.parents-row p {
-
-  width: 42%;
-
-}
-
-
-.parents-row span {
-
-  font-size: 11px;
-
-  letter-spacing: .06em;
-
-}
-
-
-/* ==========================================
-   PANEL TWO
-========================================== */
-
-.panel-two {
-
-  top: 0;
-
-  z-index: 9;
-
-  transform-origin: top center;
-
-  transform:
-    rotateX(-179deg);
-
-}
-
-
-.center-content {
-
+.panel-content-1 {
   display: flex;
 
   flex-direction: column;
 
-  justify-content: center;
-
   align-items: center;
-
-  text-align: center;
-
 }
 
 
-.announce {
+.hebrew-main {
+  direction: rtl;
 
-  font-size: 13px;
+  margin-top: 20px;
+
+  font-size: 20px;
+
+  color: var(--taupe-dark);
+}
+
+
+.translation {
+  margin-top: 11px;
+
+  font-size: 10px;
+
+  line-height: 1.5;
 
   letter-spacing: .04em;
-
-  line-height: 1.4;
-
 }
 
 
-.names {
+.families {
+  width: 100%;
 
-  margin-top: 25px;
+  margin-top: 70px;
 
-  font-family:
-    "Cormorant Garamond",
-    serif;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 25px;
+}
+
+
+.family-names {
+  font-size: 17px;
+
+  letter-spacing: .03em;
+}
+
+
+.families span {
+  display: block;
+
+  margin-top: 6px;
+
+  font-size: 8px;
+
+  letter-spacing: .12em;
+}
+
+
+.announcement {
+  margin-top: 65px;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  letter-spacing: .06em;
+}
+
+
+.main-names {
+  margin-top: 22px;
 
   font-size: 40px;
 
@@ -526,90 +992,106 @@ body {
 
   line-height: .95;
 
-  text-transform: uppercase;
+  color: var(--taupe-dark);
+}
+
+
+.main-names span {
+  font-style: italic;
+  font-weight: 300;
+}
+
+
+/* =========================================================
+   UNFOLD BUTTON
+========================================================= */
+
+.unfold-button {
+  position: absolute;
+
+  bottom: 35px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  border: 0;
+
+  background: transparent;
 
   color: var(--taupe-dark);
 
+  cursor: pointer;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 7px;
+
+  letter-spacing: .32em;
+
+  white-space: nowrap;
+
+  transition:
+    opacity .4s ease;
 }
 
 
-.names span {
+.unfold-button i {
+  display: block;
 
-  font-style: italic;
+  width: 1px;
+  height: 35px;
 
-  font-weight: 300;
+  margin: 15px auto 0;
 
-  text-transform: none;
+  background: var(--line);
 
+  animation:
+    linePulse
+    1.8s
+    ease-in-out
+    infinite;
 }
 
 
-.wedding-date {
+@keyframes linePulse {
 
-  margin-top: 17px;
+  0%,100% {
+    transform: scaleY(.45);
+    opacity: .35;
+  }
 
-  font-size: 14px;
-
-  letter-spacing: .05em;
-
-}
-
-
-.event {
-
-  margin-top: 38px;
-
-}
-
-
-.script-title {
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 30px;
-
-  font-style: italic;
-
-  font-weight: 300;
-
-  line-height: 1;
-
-}
-
-
-.event-time {
-
-  margin-top: 8px;
-
-  font-size: 11px;
-
-  letter-spacing: .08em;
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
 
 }
 
 
-/* ==========================================
-   PANEL THREE
-========================================== */
+/* =========================================================
+   PANEL 2
+========================================================= */
 
-.panel-three {
-
+.panel-2 {
   top: 0;
 
-  z-index: 8;
+  z-index: 18;
 
-  transform-origin: top center;
+  transform-origin:
+    top center;
 
   transform:
     rotateX(-179deg);
 
+  transition:
+    transform
+    1.35s
+    cubic-bezier(.76,0,.24,1);
 }
 
 
-.bottom-content {
-
+.panel-content-2 {
   display: flex;
 
   flex-direction: column;
@@ -617,299 +1099,314 @@ body {
   justify-content: center;
 
   align-items: center;
-
-  text-align: center;
-
 }
 
 
-.small-caption {
-
-  font-size: 10px;
-
-  letter-spacing: .18em;
-
-}
-
-
-.venue {
-
-  margin-top: 12px;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 31px;
-
-  font-weight: 400;
-
-  letter-spacing: .03em;
-
-}
-
-
-.city {
-
-  margin-top: 5px;
-
-  font-size: 13px;
-
-  letter-spacing: .12em;
-
-}
-
-
-.thin-divider {
-
-  width: 45px;
-
-  height: 1px;
-
-  margin: 40px auto;
-
-  background: var(--line);
-
-}
-
-
-.celebration {
-
-  font-size: 13px;
-
-  letter-spacing: .08em;
-
-}
-
-
-/* ==========================================
-   OPEN BUTTON
-========================================== */
-
-.open-button {
-
-  margin-top: 75px;
-
-  padding: 17px 28px;
-
-  border: 1px solid var(--line);
-
-  background:
-    rgba(255,255,255,.35);
-
-  color: var(--taupe-dark);
-
-  cursor: pointer;
-
-  font-family:
-    "Montserrat",
-    sans-serif;
+.little-label {
+  font-family: "Montserrat", sans-serif;
 
   font-size: 8px;
 
   letter-spacing: .3em;
-
-  transition:
-    background .4s ease,
-    color .4s ease;
-
 }
 
 
-.open-button:hover {
+.big-day {
+  margin-top: 12px;
 
-  background: var(--taupe);
+  font-family: "Italiana", serif;
 
-  color: white;
+  font-size: 105px;
 
+  line-height: .9;
+
+  color: var(--taupe);
 }
 
 
-/* ==========================================
-   OPEN STATE
+.month {
+  margin-top: 10px;
 
-   VERTICAL UNFOLDING
-========================================== */
+  font-size: 14px;
 
-.invitation-wrapper.open {
-
-  height: 2070px;
-
+  letter-spacing: .12em;
 }
 
 
-/* first panel remains fixed */
+.hebrew-date {
+  direction: rtl;
 
-.invitation-wrapper.open
-.panel-one {
+  margin-top: 14px;
+
+  font-size: 16px;
+}
+
+
+.events {
+  width: 75%;
+
+  margin-top: 65px;
+}
+
+
+.event-script {
+  font-size: 31px;
+
+  font-style: italic;
+
+  font-weight: 300;
+}
+
+
+.event-hour {
+  margin-top: 8px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: .2em;
+}
+
+
+.event-divider {
+  width: 1px;
+  height: 34px;
+
+  margin: 25px auto;
+
+  background: var(--line);
+}
+
+
+/* =========================================================
+   PANEL 3
+========================================================= */
+
+.panel-3 {
+  top: 0;
+
+  z-index: 16;
+
+  transform-origin:
+    top center;
 
   transform:
-    translateY(0);
-
-}
-
-
-/* second folds downward */
-
-.invitation-wrapper.open
-.panel-two {
-
-  transform:
-    translateY(690px)
-    rotateX(0deg);
-
-}
-
-
-/* third folds underneath second */
-
-.invitation-wrapper.open
-.panel-three {
-
-  transform:
-    translateY(1380px)
-    rotateX(0deg);
-
-}
-
-
-/* animation */
-
-.panel-two {
+    rotateX(-179deg);
 
   transition:
-
-    transform
-    1.35s
-    cubic-bezier(.76,0,.24,1);
-
-}
-
-
-.panel-three {
-
-  transition:
-
     transform
     1.35s
     cubic-bezier(.76,0,.24,1)
-    .75s;
-
+    .7s;
 }
 
 
-/* hide button after opening */
+.panel-content-3 {
+  display: flex;
 
-.invitation-wrapper.open
-.open-button {
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+}
+
+
+.venue {
+  margin-top: 18px;
+
+  font-size: 39px;
+
+  line-height: .95;
+
+  font-weight: 400;
+
+  color: var(--taupe-dark);
+}
+
+
+.address {
+  margin-top: 25px;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  letter-spacing: .1em;
+}
+
+
+.ornamental-line {
+  width: 100px;
+
+  margin: 55px 0;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.ornamental-line::before,
+.ornamental-line::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background: var(--line);
+}
+
+
+.ornamental-line span {
+  width: 5px;
+  height: 5px;
+
+  margin: 0 8px;
+
+  border: 1px solid var(--line);
+
+  transform: rotate(45deg);
+}
+
+
+.celebration {
+  font-size: 11px;
+
+  letter-spacing: .1em;
+}
+
+
+.ending-script {
+  margin-top: 70px;
+
+  font-size: 32px;
+
+  font-style: italic;
+
+  color: var(--taupe-dark);
+}
+
+
+/* =========================================================
+   UNFOLDED
+========================================================= */
+
+.invitation.unfolded {
+  height: 2070px;
+}
+
+
+.invitation.unfolded
+.panel-2 {
+
+  transform:
+    translateY(690px)
+    rotateX(0);
+}
+
+
+.invitation.unfolded
+.panel-3 {
+
+  transform:
+    translateY(1380px)
+    rotateX(0);
+}
+
+
+.invitation.unfolded
+.unfold-button {
 
   opacity: 0;
 
   pointer-events: none;
-
 }
 
 
-/* ==========================================
+/* =========================================================
    RSVP
-========================================== */
+========================================================= */
 
 .rsvp {
+  display: none;
 
-  width:
-    min(600px, 88vw);
+  width: 100%;
 
-  margin:
-    0 auto;
+  min-height: 650px;
 
-  padding-top: 80px;
+  padding:
+    130px 25px;
 
   text-align: center;
+
+  background:
+    #eee9e3;
 
   opacity: 0;
 
   transform:
-    translateY(40px);
-
-  pointer-events: none;
+    translateY(35px);
 
   transition:
-
-    opacity 1.2s ease,
-
-    transform 1.2s ease;
-
+    opacity 1s ease,
+    transform 1s ease;
 }
 
 
 .rsvp.visible {
+  display: block;
 
   opacity: 1;
 
   transform:
     translateY(0);
-
-  pointer-events: auto;
-
 }
 
 
-.rsvp-small {
+.rsvp-label {
+  font-family: "Montserrat", sans-serif;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
-
-  font-size: 9px;
+  font-size: 8px;
 
   letter-spacing: .4em;
-
 }
 
 
 .rsvp h2 {
+  margin-top: 22px;
 
-  margin-top: 20px;
-
-  font-family:
-    "Cormorant Garamond",
-    serif;
-
-  font-size: 55px;
+  font-size:
+    clamp(52px, 8vw, 75px);
 
   font-weight: 300;
 
   font-style: italic;
 
+  color: var(--taupe-dark);
 }
 
 
-.rsvp-copy {
-
+.rsvp-text {
   margin-top: 18px;
 
-  font-size: 18px;
+  font-size: 19px;
 
-  line-height: 1.55;
-
+  line-height: 1.5;
 }
 
 
-/* ==========================================
-   WHATSAPP
-========================================== */
-
 .whatsapp-button {
-
   display: inline-flex;
 
   justify-content: center;
-
   align-items: center;
 
-  margin-top: 38px;
+  min-height: 60px;
 
-  min-height: 58px;
+  margin-top: 45px;
 
   padding:
     0 35px;
@@ -918,161 +1415,186 @@ body {
     1px solid
     var(--taupe-dark);
 
-  color:
-    var(--taupe-dark);
+  color: var(--taupe-dark);
 
   text-decoration: none;
 
-  font-family:
-    "Montserrat",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   font-size: 8px;
 
-  letter-spacing: .27em;
+  letter-spacing: .25em;
 
   transition:
-    .4s ease;
-
+    background .35s ease,
+    color .35s ease;
 }
 
 
 .whatsapp-button:hover {
-
   color: white;
 
   background:
     var(--taupe-dark);
-
 }
 
 
-/* ==========================================
+.rsvp-small {
+  margin-top: 70px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 7px;
+
+  letter-spacing: .3em;
+}
+
+
+/* =========================================================
    MOBILE
-========================================== */
+========================================================= */
 
-@media
-(max-width: 650px) {
+@media (max-width: 650px) {
 
-  .intro {
-
-    min-height: 43vh;
-
+  .envelope-stage {
+    min-height: 650px;
   }
 
 
-  .intro-monogram {
-
-    font-size: 145px;
-
+  .envelope-wrap {
+    width: 91vw;
   }
 
 
-  .invitation-scene {
-
-    padding-left: 14px;
-
-    padding-right: 14px;
-
+  .ribbon-h {
+    height: 35px;
   }
 
 
-  .invitation-wrapper {
-
-    width: 94vw;
-
-    height: 560px;
-
+  .ribbon-v {
+    width: 35px;
   }
 
 
-  .card-panel {
-
-    height: 560px;
-
+  .wax-seal {
+    width: 78px;
+    height: 78px;
   }
 
 
-  .panel-inner {
+  .closed-card {
+    left: 18%;
+    width: 64%;
+  }
 
+
+  .closed-content {
     padding:
-      55px 32px;
-
+      45px 20px;
   }
 
 
-  .parents-row {
+  /* invitation */
 
-    left: 30px;
-
-    right: 30px;
-
-    bottom: 70px;
-
+  .card-stage {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
 
-  .watermark {
-
-    font-size: 430px;
-
+  .invitation {
+    width: 94vw;
+    height: 580px;
   }
 
 
-  .names {
-
-    font-size: 32px;
-
+  .panel {
+    height: 580px;
   }
 
 
-  .script-title {
-
-    font-size: 25px;
-
+  .panel-content {
+    padding:
+      45px 30px;
   }
 
 
-  .event {
+  .hebrew-main {
+    margin-top: 10px;
 
-    margin-top: 27px;
-
+    font-size: 18px;
   }
 
 
-  .open-button {
+  .families {
+    margin-top: 48px;
 
+    gap: 15px;
+  }
+
+
+  .family-names {
+    font-size: 14px;
+  }
+
+
+  .announcement {
+    margin-top: 48px;
+  }
+
+
+  .main-names {
+    font-size: 34px;
+  }
+
+
+  .big-day {
+    font-size: 88px;
+  }
+
+
+  .events {
+    margin-top: 45px;
+  }
+
+
+  .event-script {
+    font-size: 27px;
+  }
+
+
+  .venue {
+    font-size: 34px;
+  }
+
+
+  .ending-script {
     margin-top: 55px;
-
   }
 
 
-  /* mobile unfolding distances */
+  /* vertical opening */
 
-  .invitation-wrapper.open {
-
-    height: 1680px;
-
+  .invitation.unfolded {
+    height: 1740px;
   }
 
 
-  .invitation-wrapper.open
-  .panel-two {
+  .invitation.unfolded
+  .panel-2 {
 
     transform:
-      translateY(560px)
-      rotateX(0deg);
-
+      translateY(580px)
+      rotateX(0);
   }
 
 
-  .invitation-wrapper.open
-  .panel-three {
+  .invitation.unfolded
+  .panel-3 {
 
     transform:
-      translateY(1120px)
-      rotateX(0deg);
-
+      translateY(1160px)
+      rotateX(0);
   }
 
 }
