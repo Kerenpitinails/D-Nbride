@@ -3,158 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel & Noa - Partecipazione di Matrimonio</title>
+    <title>Daniel & Noa — Partecipazione di Matrimonio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="card-wrapper" onclick="openCard()">
-        <div class="card">
+    <div class="scene">
+        <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
             
-            <!-- COPERTINA CON NASTRO E CERALACCA -->
-            <div class="cover">
-                <div class="ribbon-vertical"></div>
-                <div class="ribbon-bow"></div>
+            <!-- BUSTA ESTERNA CON NASTRO E SIGILLO D&N -->
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="ribbon-silk"></div>
                 <div class="wax-seal">
-                    <span>DN</span>
+                    <span class="seal-initials">D & N</span>
                 </div>
-                <p class="click-hint">✨ Clicca per aprire ✨</p>
+                <div class="click-hint">Tocca per aprire l'invito</div>
             </div>
 
-            <!-- FOGLIO INTERNO -->
-            <div class="inner-paper">
+            <!-- PARTECIPAZIONE INTERNA A 3 PANNELLI VERTICALI -->
+            <div class="invitation-card">
                 <div class="paper-texture"></div>
-                
-                <div class="section-top">
-                    <h1 class="script-names">Daniel</h1>
-                    <span class="ampersand">&</span>
-                    <h1 class="script-names">Noa</h1>
-                    <p class="announcement">annunciano il loro matrimonio</p>
+
+                <!-- PANNELLO 1: INTESTAZIONE -->
+                <div class="panel panel-top">
+                    <p class="monogram">D & N</p>
+                    <p class="sub-title">Siamo felici di annunciarvi il nostro matrimonio</p>
+                    <h1 class="names">Daniel <span class="ampersand">&</span> Noa</h1>
+                    <div class="divider">❖</div>
                 </div>
 
-                <div class="line-divider"></div>
-
-                <div class="section-middle">
-                    <p class="day-name">Sabato</p>
-                    <p class="script-date">15 Giugno 2027</p>
-                    <p class="time">ore 16:00</p>
+                <!-- PANNELLO 2: EVENTO E CERIMONIA -->
+                <div class="panel panel-middle">
+                    <p class="day">Domenica</p>
+                    <p class="date">6 Giugno 2027</p>
+                    <p class="time">Ore 17:00</p>
                     
-                    <div class="location-group">
-                        <p class="script-location">Chiesa Santa Maria</p>
-                        <p class="address">Roma</p>
+                    <div class="venue-info">
+                        <p class="venue-name">Villa dei Desideri</p>
+                        <p class="venue-location">Cerveteri (Roma)</p>
+                    </div>
+                    <div class="divider">❖</div>
+                </div>
+
+                <!-- PANNELLO 3: BENEDIZIONE EBRAICA E RSVP -->
+                <div class="panel panel-bottom">
+                    <div class="hebrew-blessing">
+                        <p class="hebrew-text">קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה, קוֹל חָתָן וְקוֹל כַּלָּה</p>
+                        <p class="blessing-translation">"Il suono di gioia e il suono di allegria, la voce dello sposo e la voce della sposa"</p>
+                    </div>
+
+                    <div class="rsvp-section">
+                        <p class="rsvp-text">È gradita gentile conferma entro il 1° Maggio 2027</p>
+                        <a href="https://wa.me/393517141553?text=Ciao%20Daniel%20e%20Noa!%20Confermo%20con%20gioia%20la%20mia%20presenza%20al%20vostro%20matrimonio!" target="_blank" class="rsvp-button">
+                            CONFERMA PRESENZA (RSVP)
+                        </a>
                     </div>
                 </div>
 
-                <div class="line-divider"></div>
-
-                <div class="section-bottom">
-                    <p class="reception-text">Dopo la cerimonia saremo lieti di festeggiare con voi presso</p>
-                    <p class="script-location">Villa Rosa Eventi</p>
-                    <p class="address">Via Rosa 12, Roma</p>
-
-                    <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa!" target="_blank" class="rsvp-btn">
-                        Conferma Presenza (RSVP)
-                    </a>
-                </div>
-
             </div>
+
         </div>
     </div>
 
     <script>
-        function openCard() {
-            document.querySelector('.card-wrapper').classList.toggle('is-open');
+        function openEnvelope() {
+            document.getElementById('envelopeWrapper').classList.add('is-open');
         }
-    </script>
-</body>
-</html>
-                <div class="section-middle">
-                    <p class="day-name">Sabato</p>
-                    <p class="script-date">15 Giugno 2027</p>
-                    <p class="time">ore 16:00</p>
-                    
-                    <div class="location-group">
-                        <p class="script-location">Chiesa Santa Maria</p>
-                        <p class="address">Roma</p>
-                    </div>
-                </div>
 
-                <div class="line-divider"></div>
-
-                <div class="section-bottom">
-                    <p class="reception-text">Dopo la cerimonia saremo lieti di festeggiare con voi presso</p>
-                    <p class="script-location">Villa Dei Desideri</p>
-                    <p class="address">Cerveteri</p>
-
-                    <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa!" target="_blank" class="rsvp-btn">
-                        Conferma Presenza (RSVP)
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openCard() {
-            document.querySelector('.card-wrapper').classList.toggle('is-open');
-        }
-    </script>
-</body>
-</html>                <div class="line-divider"></div>
-
-                <!-- PARTE CENTRALE -->
-                <div class="section-middle">
-                    <p class="day-name">Sabato</p>
-                    <p class="script-date">6 Giugno 2027</p>
-                    <p class="time">ore 18:00</p>
-                    
-                    <div class="location-group">
-                        <p class="script-location">Villa Dei Desideri</p>
-                        <p class="address">Cerveteri</p>
-                    </div>
-                </div>
-
-                <div class="line-divider"></div>
-
-                <!-- PARTE INFERIORE -->
-                <div class="section-bottom">
-                    <p class="reception-text">Dopo la cerimonia saremo lieti di festeggiare con voi presso</p>
-                    <p class="script-location">Villa Rosa Eventi</p>
-                    <p class="address">Via Rosa 12, Roma</p>
-
-                    <a href="https://wa.me/393517141553?text=Ciao!%20Confermo%20con%20piacere%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa!" target="_blank" class="rsvp-btn">
-                        Conferma Presenza (RSVP)
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function openCard() {
-            document.querySelector('.card-wrapper').classList.toggle('is-open');
-        }
-    </script>
-</body>
-</html>                <div class="top-fold"></div>
-                <div class="seal">M&S</div>
-            </div>
-            <p class="click-hint">✨ Clicca sul sigillo per aprire l'invito ✨</p>
-        </div>
-    </div>
-
-    <script>
-        function toggleEnvelope() {
-            document.querySelector('.envelope-container').classList.toggle('open');
-        }
-    </script>
-</body>
-</html>        function openEnvelope() {
-            document.querySelector('.envelope-wrapper').classList.add('open');
-        }
+        // Apertura automatica dopo 1.2 secondi dall'accesso al link
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                openEnvelope();
+            }, 1200);
+        });
     </script>
 </body>
 </html>
