@@ -2,15 +2,20 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Wedding Invitation</title>
 
+  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&family=Montserrat:wght@300;400&display=swap"
     rel="stylesheet"
   >
 
@@ -19,210 +24,232 @@
 
 <body>
 
-  <main class="wedding-page">
+<main class="page">
 
-    <!-- INTRO -->
-    <section class="intro">
+  <!-- =========================
+       INTRO
+  ========================== -->
 
-      <p class="intro-small">YOU ARE INVITED</p>
+  <section class="intro">
 
-      <h1 class="intro-title">
-        06 · 06 · 27
-      </h1>
+    <div class="intro-monogram">
+      D
+    </div>
 
-      <p class="intro-text">
-        Un invito speciale per un giorno speciale
-      </p>
+    <p class="intro-date">
+      6 GIUGNO 2027
+    </p>
 
-    </section>
+    <div class="scroll-line"></div>
 
+    <p class="intro-instruction">
+      APRI L'INVITO
+    </p>
 
-    <!-- SCENA BUSTA -->
-    <section class="invitation-scene">
-
-      <div class="envelope" id="envelope">
-
-        <!-- RETRO BUSTA -->
-        <div class="envelope-back"></div>
+  </section>
 
 
-        <!-- INVITO INTERNO -->
-        <div class="invitation" id="invitation">
+  <!-- =========================
+       SCENA INVITO
+  ========================== -->
 
-          <!-- PANNELLO SINISTRO -->
-          <section class="panel panel-left">
+  <section class="invitation-scene">
 
-            <div class="panel-content">
+    <div
+      class="invitation-wrapper"
+      id="invitationWrapper"
+    >
 
-              <span class="small-label">
-                WEDDING
-              </span>
+      <!-- =====================
+           PANNELLO 1
+      ====================== -->
 
-              <div class="monogram">
-                N
-                <span>&</span>
-                N
-              </div>
+      <article class="card-panel panel-one">
 
-              <p class="small-copy">
-                Con grande gioia<br>
-                vi invitiamo a celebrare<br>
-                insieme a noi.
-              </p>
+        <div class="paper-border"></div>
 
-            </div>
+        <span class="bh">
+          ב״ה
+        </span>
 
-          </section>
+        <div class="watermark">
+          D
+        </div>
 
+        <div class="panel-inner">
 
-          <!-- PANNELLO CENTRALE -->
-          <section class="panel panel-center">
+          <p class="hebrew">
+            יְבָרֶכְךָ ה׳ וְיִשְׁמְרֶךָ
+          </p>
 
-            <div class="panel-content">
+          <p class="blessing">
+            “TI BENEDICA IL SIGNORE<br>
+            E TI CUSTODISCA”
+          </p>
 
-              <p class="small-label">
-                SAVE THE DATE
-              </p>
+          <div class="parents-row">
 
-              <h2 class="couple-name">
-                Nome
-                <span>&</span>
-                Nome
-              </h2>
+            <p>
+              NOME<br>
+              <span>GENITORI SPOSA</span>
+            </p>
 
-              <div class="ornament">
-                ✦
-              </div>
+            <p>
+              NOME<br>
+              <span>GENITORI SPOSO</span>
+            </p>
 
-              <p class="date">
-                6 Giugno 2027
-              </p>
-
-              <p class="time">
-                ore 17:00
-              </p>
-
-              <div class="location">
-
-                <strong>
-                  Villa dei Desideri
-                </strong>
-
-                <span>
-                  Cerveteri
-                </span>
-
-              </div>
-
-            </div>
-
-          </section>
-
-
-          <!-- PANNELLO DESTRO -->
-          <section class="panel panel-right">
-
-            <div class="panel-content">
-
-              <p class="small-label">
-                CELEBRATE WITH US
-              </p>
-
-              <p class="quote">
-                Una giornata da vivere,<br>
-                un ricordo da custodire.
-              </p>
-
-              <div class="divider"></div>
-
-              <p class="small-copy">
-                Saremo felici di condividere
-                questo momento con voi.
-              </p>
-
-            </div>
-
-          </section>
+          </div>
 
         </div>
 
+      </article>
 
-        <!-- FRONTE BUSTA -->
-        <div class="envelope-front">
 
-          <div class="front-left"></div>
-          <div class="front-right"></div>
-          <div class="front-bottom"></div>
+      <!-- =====================
+           PANNELLO 2
+      ====================== -->
+
+      <article class="card-panel panel-two">
+
+        <div class="paper-border"></div>
+
+        <div class="watermark watermark-center">
+          D
+        </div>
+
+        <div class="panel-inner center-content">
+
+          <p class="announce">
+            ANNUNCIANO CON GIOIA<br>
+            IL MATRIMONIO DEI LORO FIGLI
+          </p>
+
+          <h1 class="names">
+            Nome
+            <span>&</span>
+            Nome
+          </h1>
+
+          <p class="wedding-date">
+            6 GIUGNO 2027
+          </p>
+
+          <div class="event">
+
+            <p class="script-title">
+              Welcome & Cheers
+            </p>
+
+            <p class="event-time">
+              ORE 17.00
+            </p>
+
+          </div>
+
+          <div class="event">
+
+            <p class="script-title">
+              Chuppa
+            </p>
+
+            <p class="event-time">
+              A SEGUIRE
+            </p>
+
+          </div>
 
         </div>
 
-
-        <!-- PATTA -->
-        <div class="flap"></div>
+      </article>
 
 
-        <!-- NASTRO -->
-        <div class="ribbon ribbon-horizontal"></div>
-        <div class="ribbon ribbon-vertical"></div>
+      <!-- =====================
+           PANNELLO 3
+      ====================== -->
+
+      <article class="card-panel panel-three">
+
+        <div class="paper-border"></div>
+
+        <div class="watermark watermark-bottom">
+          D
+        </div>
+
+        <div class="panel-inner bottom-content">
+
+          <p class="small-caption">
+            PRESSO
+          </p>
+
+          <h2 class="venue">
+            VILLA DEI DESIDERI
+          </h2>
+
+          <p class="city">
+            CERVETERI
+          </p>
+
+          <div class="thin-divider"></div>
+
+          <p class="celebration">
+            SEGUIRANNO FESTEGGIAMENTI
+          </p>
+
+          <button
+            class="open-button"
+            id="openButton"
+          >
+            <span>APRI L'INVITO</span>
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
 
 
-        <!-- SIGILLO -->
-        <button
-          class="wax-seal"
-          id="waxSeal"
-          aria-label="Apri l'invito"
-        >
-          <span class="seal-border">
-            N&N
-          </span>
-        </button>
+  <!-- =========================
+       RSVP
+  ========================== -->
 
-      </div>
+  <section
+    class="rsvp"
+    id="rsvp"
+  >
 
+    <p class="rsvp-small">
+      RSVP
+    </p>
 
-      <button
-        class="open-label"
-        id="openButton"
-      >
-        APRI L'INVITO
-      </button>
+    <h2>
+      Ci sarai?
+    </h2>
 
-    </section>
+    <p class="rsvp-copy">
+      Saremo felici di averti con noi.<br>
+      Conferma la tua presenza direttamente
+      agli sposi.
+    </p>
 
+    <a
+      href="#"
+      id="whatsappButton"
+      class="whatsapp-button"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      CONFERMA LA TUA PRESENZA
+    </a>
 
-    <!-- RSVP -->
-    <section class="rsvp" id="rsvp">
+  </section>
 
-      <p class="small-label">
-        RSVP
-      </p>
+</main>
 
-      <h2>
-        Ci sarai?
-      </h2>
-
-      <p>
-        Saremo felici di averti con noi.
-        Conferma la tua presenza direttamente
-        agli sposi.
-      </p>
-
-      <a
-        class="whatsapp-button"
-        href="#"
-        id="whatsappButton"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        CONFERMA LA TUA PRESENZA
-      </a>
-
-    </section>
-
-  </main>
-
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
