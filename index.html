@@ -2,160 +2,291 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <title>Daniel & Noa — 06.06.2027</title>
 
-  <title>Wedding Invitation</title>
-
-  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&family=Montserrat:wght@300;400&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<main class="page">
+<main class="experience">
 
-  <!-- =========================
-       INTRO
-  ========================== -->
+  <!-- =====================================================
+       HERO / BUSTA
+  ====================================================== -->
 
-  <section class="intro">
+  <section class="envelope-stage" id="envelopeStage">
 
-    <div class="intro-monogram">
-      D
+    <div class="top-date">
+      DANIEL & NOA
+      <span>06 · 06 · 2027</span>
     </div>
 
-    <p class="intro-date">
-      6 GIUGNO 2027
-    </p>
+    <div class="envelope-wrap" id="envelopeWrap">
 
-    <div class="scroll-line"></div>
+      <!-- BUSTA -->
+      <div class="envelope" id="envelope">
 
-    <p class="intro-instruction">
-      APRI L'INVITO
-    </p>
+        <div class="envelope-back"></div>
+
+        <!--
+          INVITO CHIUSO CHE USCIRÀ DALLA BUSTA
+        -->
+        <div class="closed-card" id="closedCard">
+
+          <div class="card-line"></div>
+
+          <span class="bh-small">ב״ה</span>
+
+          <div class="closed-watermark">
+            DN
+          </div>
+
+          <div class="closed-content">
+
+            <p class="closed-hebrew">
+              יְבָרֶכְךָ ה׳ וְיִשְׁמְרֶךָ
+            </p>
+
+            <p class="closed-translation">
+              TI BENEDICA IL SIGNORE<br>
+              E TI CUSTODISCA
+            </p>
+
+            <h1>
+              DANIEL
+              <span>&</span>
+              NOA
+            </h1>
+
+            <p class="closed-date">
+              DOMENICA<br>
+              6 GIUGNO 2027
+            </p>
+
+            <p class="closed-hebrew-date">
+              א׳ בְּסִיוָן תשפ״ז
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- PATTA POSTERIORE -->
+        <div class="flap" id="flap"></div>
+
+
+        <!-- FRONTE DELLA BUSTA -->
+        <div class="envelope-front">
+
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="front-bottom"></div>
+
+        </div>
+
+
+        <!-- NASTRO -->
+        <div class="ribbon ribbon-h"></div>
+        <div class="ribbon ribbon-v"></div>
+
+
+        <!-- SIGILLO -->
+        <button
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Apri l'invito"
+        >
+          <span class="wax-inner">
+            DN
+          </span>
+        </button>
+
+      </div>
+
+
+      <!-- TESTO INIZIALE -->
+      <button class="open-envelope-label" id="openEnvelopeLabel">
+        APRI L'INVITO
+      </button>
+
+    </div>
 
   </section>
 
 
-  <!-- =========================
-       SCENA INVITO
-  ========================== -->
+  <!-- =====================================================
+       INVITO ESTRATTO
+  ====================================================== -->
 
-  <section class="invitation-scene">
+  <section class="card-stage" id="cardStage">
 
-    <div
-      class="invitation-wrapper"
-      id="invitationWrapper"
-    >
+    <div class="card-stage-header">
 
-      <!-- =====================
+      <p>
+        DANIEL & NOA
+      </p>
+
+      <span>
+        06 · 06 · 2027
+      </span>
+
+    </div>
+
+
+    <!-- PARTECIPAZIONE A 3 PANNELLI -->
+    <div class="invitation" id="invitation">
+
+
+      <!-- =================================================
            PANNELLO 1
-      ====================== -->
+      ================================================== -->
 
-      <article class="card-panel panel-one">
+      <article class="panel panel-1">
 
-        <div class="paper-border"></div>
+        <div class="panel-border"></div>
 
         <span class="bh">
           ב״ה
         </span>
 
         <div class="watermark">
-          D
+          DN
         </div>
 
-        <div class="panel-inner">
+        <div class="panel-content panel-content-1">
 
-          <p class="hebrew">
+          <p class="hebrew-main">
             יְבָרֶכְךָ ה׳ וְיִשְׁמְרֶךָ
           </p>
 
-          <p class="blessing">
+          <p class="translation">
             “TI BENEDICA IL SIGNORE<br>
             E TI CUSTODISCA”
           </p>
 
-          <div class="parents-row">
 
-            <p>
-              NOME<br>
-              <span>GENITORI SPOSA</span>
-            </p>
+          <div class="families">
 
-            <p>
-              NOME<br>
-              <span>GENITORI SPOSO</span>
-            </p>
+            <div>
+              <p class="family-names">
+                ROSI & PINO
+              </p>
+
+              <span>
+                GENITORI DI DANIEL
+              </span>
+            </div>
+
+
+            <div>
+              <p class="family-names">
+                VITTORIO & SIMONA
+              </p>
+
+              <span>
+                GENITORI DI NOA
+              </span>
+            </div>
 
           </div>
 
-        </div>
 
-      </article>
-
-
-      <!-- =====================
-           PANNELLO 2
-      ====================== -->
-
-      <article class="card-panel panel-two">
-
-        <div class="paper-border"></div>
-
-        <div class="watermark watermark-center">
-          D
-        </div>
-
-        <div class="panel-inner center-content">
-
-          <p class="announce">
+          <p class="announcement">
             ANNUNCIANO CON GIOIA<br>
             IL MATRIMONIO DEI LORO FIGLI
           </p>
 
-          <h1 class="names">
-            Nome
-            <span>&</span>
-            Nome
-          </h1>
 
-          <p class="wedding-date">
-            6 GIUGNO 2027
+          <h2 class="main-names">
+            DANIEL
+            <span>&</span>
+            NOA
+          </h2>
+
+
+          <!-- CLICK PER DISPIEGARE -->
+          <button
+            class="unfold-button"
+            id="unfoldButton"
+          >
+            <span>SCOPRI L'INVITO</span>
+            <i></i>
+          </button>
+
+        </div>
+
+      </article>
+
+
+      <!-- =================================================
+           PANNELLO 2
+      ================================================== -->
+
+      <article class="panel panel-2">
+
+        <div class="panel-border"></div>
+
+        <div class="watermark watermark-middle">
+          DN
+        </div>
+
+        <div class="panel-content panel-content-2">
+
+          <p class="little-label">
+            DOMENICA
           </p>
 
-          <div class="event">
-
-            <p class="script-title">
-              Welcome & Cheers
-            </p>
-
-            <p class="event-time">
-              ORE 17.00
-            </p>
-
+          <div class="big-day">
+            06
           </div>
 
-          <div class="event">
+          <p class="month">
+            GIUGNO 2027
+          </p>
 
-            <p class="script-title">
-              Chuppa
-            </p>
+          <p class="hebrew-date">
+            א׳ בְּסִיוָן תשפ״ז
+          </p>
 
-            <p class="event-time">
-              A SEGUIRE
-            </p>
+
+          <div class="events">
+
+            <div class="event">
+
+              <p class="event-script">
+                Welcome & Cheers
+              </p>
+
+              <p class="event-hour">
+                ORE 16:30
+              </p>
+
+            </div>
+
+
+            <div class="event-divider"></div>
+
+
+            <div class="event">
+
+              <p class="event-script">
+                Chuppah
+              </p>
+
+              <p class="event-hour">
+                ORE 17:30
+              </p>
+
+            </div>
 
           </div>
 
@@ -164,44 +295,48 @@
       </article>
 
 
-      <!-- =====================
+      <!-- =================================================
            PANNELLO 3
-      ====================== -->
+      ================================================== -->
 
-      <article class="card-panel panel-three">
+      <article class="panel panel-3">
 
-        <div class="paper-border"></div>
+        <div class="panel-border"></div>
 
         <div class="watermark watermark-bottom">
-          D
+          DN
         </div>
 
-        <div class="panel-inner bottom-content">
+        <div class="panel-content panel-content-3">
 
-          <p class="small-caption">
+          <p class="little-label">
             PRESSO
           </p>
 
-          <h2 class="venue">
-            VILLA DEI DESIDERI
-          </h2>
+          <h3 class="venue">
+            VILLA<br>
+            DEI DESIDERI
+          </h3>
 
-          <p class="city">
+          <p class="address">
+            VIA DEL TIRO A SEGNO 4<br>
             CERVETERI
           </p>
 
-          <div class="thin-divider"></div>
+
+          <div class="ornamental-line">
+            <span></span>
+          </div>
+
 
           <p class="celebration">
             SEGUIRANNO FESTEGGIAMENTI
           </p>
 
-          <button
-            class="open-button"
-            id="openButton"
-          >
-            <span>APRI L'INVITO</span>
-          </button>
+
+          <p class="ending-script">
+            Daniel & Noa
+          </p>
 
         </div>
 
@@ -212,16 +347,13 @@
   </section>
 
 
-  <!-- =========================
+  <!-- =====================================================
        RSVP
-  ========================== -->
+  ====================================================== -->
 
-  <section
-    class="rsvp"
-    id="rsvp"
-  >
+  <section class="rsvp" id="rsvp">
 
-    <p class="rsvp-small">
+    <p class="rsvp-label">
       RSVP
     </p>
 
@@ -229,21 +361,24 @@
       Ci sarai?
     </h2>
 
-    <p class="rsvp-copy">
-      Saremo felici di averti con noi.<br>
-      Conferma la tua presenza direttamente
-      agli sposi.
+    <p class="rsvp-text">
+      Saremo felici di condividere<br>
+      questo giorno con te.
     </p>
 
     <a
-      href="#"
       id="whatsappButton"
       class="whatsapp-button"
+      href="#"
       target="_blank"
       rel="noopener noreferrer"
     >
       CONFERMA LA TUA PRESENZA
     </a>
+
+    <p class="rsvp-small">
+      DANIEL & NOA · 06.06.2027
+    </p>
 
   </section>
 
