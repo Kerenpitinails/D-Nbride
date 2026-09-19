@@ -313,6 +313,119 @@
 
 
     /* =========================================================
+       OPENING D + N — monogramma editoriale animato
+       Solo la cover iniziale: struttura e apertura restano intatte.
+    ========================================================= */
+
+    .cover-content-dn {
+      justify-content: center;
+    }
+
+    .dn-mark {
+      width: 92%;
+      max-width: 360px;
+      transform: translateY(-8%);
+    }
+
+    .dn-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .dn-letter {
+      font-family: var(--serif);
+      font-size: 238px;
+      font-weight: 400;
+      font-style: italic;
+      fill: rgba(210, 202, 191, 0);
+      stroke: #cfc6ba;
+      stroke-width: 1.15;
+      paint-order: stroke fill;
+      stroke-dasharray: 1100;
+      stroke-dashoffset: 1100;
+      animation:
+        dnDraw 2.15s var(--ease-luxury) forwards,
+        dnFill .9s ease forwards;
+    }
+
+    .dn-letter-d {
+      animation-delay: .25s, 1.85s;
+    }
+
+    .dn-letter-n {
+      animation-delay: 1.05s, 2.55s;
+    }
+
+    .dn-couple {
+      position: absolute;
+      left: 50%;
+      bottom: 17.5%;
+      transform: translate(-50%, 10px);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 8px;
+      color: #c9c0b4;
+      font-family: var(--serif);
+      font-size: 13px;
+      letter-spacing: .075em;
+      white-space: nowrap;
+      opacity: 0;
+      animation: dnCaptionIn .9s ease 2.65s forwards;
+    }
+
+    .dn-amp {
+      font-style: italic;
+      font-size: 1.45em;
+      line-height: 1;
+      letter-spacing: 0;
+      margin: 0 -2px;
+    }
+
+    .cover-content-dn .cover-date {
+      bottom: 11.5%;
+      color: #c9c0b4;
+      opacity: 0;
+      animation: dnCaptionIn .9s ease 2.85s forwards;
+    }
+
+    @keyframes dnDraw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    @keyframes dnFill {
+      from { fill: rgba(210, 202, 191, 0); }
+      to   { fill: rgba(210, 202, 191, .16); }
+    }
+
+    @keyframes dnCaptionIn {
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .dn-mark {
+        width: 96%;
+      }
+
+      .dn-couple {
+        bottom: 18%;
+        font-size: 11px;
+        gap: 6px;
+      }
+
+      .cover-content-dn .cover-date {
+        bottom: 11.5%;
+      }
+    }
+
+
+    /* =========================================================
        CONTENUTO INTERNO VISIBILE DURANTE APERTURA
     ========================================================= */
 
@@ -610,7 +723,7 @@
 
       font-family: var(--serif);
 
-      font-size: clamp(45px, 10vw, 100px);
+      font-size: clamp(38px, 6vw, 68px);
 
       line-height: .9;
 
@@ -680,58 +793,66 @@
        FAMIGLIE
     ========================================================= */
 
-    .families-grid {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 70px;
-
-      border-top: 1px solid var(--line);
-
-      padding-top: 70px;
-    }
-
-    .family {
+    .families {
+      padding-top: 72px;
+      padding-bottom: 64px;
       text-align: center;
     }
 
+    .families-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 7vw, 72px);
+      width: min(100%, 620px);
+      margin: 0 auto 28px;
+      padding: 0;
+    }
+
+    .families-intro {
+      margin: 0 auto;
+      font-family: var(--serif);
+      font-size: clamp(13px, 1.5vw, 15px);
+      line-height: 1.6;
+      letter-spacing: .06em;
+      color: #625e57;
+      text-transform: uppercase;
+    }
+
+    .families-rule {
+      width: min(100%, 620px);
+      height: 1px;
+      margin: 30px auto 0;
+      background: var(--line);
+    }
+
+    .family { text-align: center; }
+
     .family small {
       display: block;
-
-      margin-bottom: 24px;
-
+      margin-bottom: 12px;
       font-size: 8px;
-
       text-transform: uppercase;
-
-      letter-spacing: .3em;
-
+      letter-spacing: .28em;
       color: var(--muted);
     }
 
     .family h3 {
       margin: 0;
-
       font-family: var(--serif);
-
-      font-size: clamp(32px, 6vw, 54px);
-
+      font-size: clamp(24px, 3.2vw, 34px);
       font-weight: 400;
-
-      line-height: 1;
+      line-height: 1.05;
     }
 
-    .family p {
-      margin-top: 17px;
+    .family h3 {
+      white-space: nowrap;
+    }
 
-      font-size: 10px;
-
-      letter-spacing: .12em;
-
-      text-transform: uppercase;
-
-      color: var(--muted);
+    .family h3 .family-amp {
+      display: inline-block;
+      margin: 0 .12em;
+      font-style: italic;
+      font-size: .8em;
     }
 
 
@@ -740,7 +861,9 @@
     ========================================================= */
 
     .welcome {
-      min-height: 90vh;
+      min-height: auto;
+      padding-top: 90px;
+      padding-bottom: 100px;
 
       display: flex;
       align-items: center;
@@ -761,7 +884,7 @@
 
       font-family: var(--serif);
 
-      font-size: clamp(72px, 18vw, 160px);
+      font-size: clamp(54px, 9vw, 92px);
 
       font-weight: 400;
 
@@ -792,7 +915,9 @@
 
       color: #f8f5ee;
 
-      min-height: 100vh;
+      min-height: auto;
+      padding-top: 100px;
+      padding-bottom: 105px;
 
       display: flex;
       align-items: center;
@@ -885,7 +1010,9 @@
     ========================================================= */
 
     .party {
-      min-height: 100vh;
+      min-height: auto;
+      padding-top: 105px;
+      padding-bottom: 115px;
 
       display: flex;
       align-items: center;
@@ -896,7 +1023,7 @@
     .party-title {
       font-family: var(--serif);
 
-      font-size: clamp(66px, 16vw, 160px);
+      font-size: clamp(54px, 8vw, 92px);
 
       font-weight: 400;
 
@@ -923,53 +1050,76 @@
     ========================================================= */
 
     .rsvp {
-      min-height: 100vh;
-
-      display: flex;
-      align-items: center;
-
+      min-height: auto;
+      padding-top: 100px;
+      padding-bottom: 110px;
       text-align: center;
-
       border-top: 1px solid var(--line);
     }
 
     .rsvp .section-inner {
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
+      width: min(100%, 680px);
+      margin: 0 auto;
     }
 
     .rsvp-title {
-      margin: 0;
-
+      margin: 0 0 38px;
       font-family: var(--serif);
-
-      font-size: clamp(75px, 18vw, 170px);
-
+      font-size: clamp(46px, 9vw, 72px);
       font-weight: 400;
-
-      letter-spacing: -.06em;
+      letter-spacing: .08em;
     }
 
-    .rsvp p {
-      margin: 25px auto 0;
+    .rsvp-card {
+      width: min(100%, 620px);
+      margin: 0 auto;
+      padding: clamp(26px, 5vw, 44px);
+      border: 1px solid rgba(23,23,20,.14);
+      outline: 1px solid rgba(23,23,20,.05);
+      outline-offset: -10px;
+      background: rgba(255,255,255,.22);
+      text-align: left;
+    }
 
-      max-width: 440px;
+    .rsvp-field { margin-bottom: 28px; }
 
+    .rsvp-field label {
+      display: block;
+      margin-bottom: 10px;
       font-family: var(--serif);
-
-      font-size: 19px;
-
-      line-height: 1.6;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
 
-    .rsvp .button:hover {
-      background: var(--ink);
-
-      color: var(--paper);
+    .rsvp-field input {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid #bcb5aa;
+      border-radius: 0;
+      padding: 10px 2px 12px;
+      background: transparent;
+      color: var(--ink);
+      font: 300 16px var(--sans);
+      outline: none;
     }
+
+    .rsvp-submit {
+      width: 100%;
+      margin-top: 10px;
+      border: 0;
+      padding: 19px 20px;
+      background: #11110f;
+      color: #ffffff;
+      font-family: var(--serif);
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .rsvp-submit:hover { opacity: .88; transform: translateY(-1px); }
 
 
     /* =========================================================
@@ -1049,9 +1199,25 @@
       }
 
       .families-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
 
-        gap: 60px;
+      .family h3 {
+        font-size: clamp(19px, 5.5vw, 25px);
+      }
+
+      .families {
+        padding-top: 64px;
+        padding-bottom: 58px;
+      }
+
+      .families-intro {
+        font-size: 11px;
+      }
+
+      .rsvp-card {
+        padding: 28px 24px;
       }
 
       .hero {
@@ -1069,7 +1235,7 @@
       }
 
       .party-title {
-        font-size: 20vw;
+        font-size: clamp(48px, 14vw, 68px);
       }
 
     }
@@ -1096,6 +1262,386 @@
     }
 
   </style>
+
+<style id="opening-fix-v06">
+/* V06 — correzioni cover: centratura, nero, nessuna piega visibile */
+.invitation:not(.opened) .panel-top,
+.invitation:not(.opened) .panel-bottom {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.invitation:not(.opened) .panel-top::after,
+.invitation:not(.opened) .panel-bottom::before,
+.invitation:not(.opened)::before,
+.invitation:not(.opened)::after {
+  opacity: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Il contenuto viene centrato rispetto all'intera facciata, non ai pannelli */
+.cover-content-dn {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transform: none !important;
+}
+
+.dn-mark {
+  position: absolute !important;
+  left: 50% !important;
+  top: 44% !important;
+  width: 82% !important;
+  max-width: 330px !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+}
+
+.dn-svg {
+  width: 100% !important;
+  overflow: visible !important;
+}
+
+.dn-letter {
+  fill: rgba(0,0,0,0) !important;
+  stroke: #000 !important;
+  stroke-width: 1.15 !important;
+}
+
+.dn-letter-d,
+.dn-letter-n {
+  fill: rgba(0,0,0,0);
+}
+
+.dn-couple {
+  left: 50% !important;
+  bottom: 18% !important;
+  color: #000 !important;
+  transform: translate(-50%, 10px);
+}
+
+.cover-content-dn .cover-date {
+  left: 50% !important;
+  bottom: 11.5% !important;
+  color: #000 !important;
+  transform: translateX(-50%) !important;
+}
+
+@keyframes dnFill {
+  from { fill: rgba(0,0,0,0); }
+  to   { fill: rgba(0,0,0,.035); }
+}
+</style>
+
+
+<style id="opening-fix-v07">
+/* COVER V07: foglio completamente piatto, nessuna piega/giunzione */
+.invitation,
+.invitation-wrap {
+  background: #fff !important;
+}
+
+.invitation {
+  box-shadow: 0 18px 42px rgba(0,0,0,.10) !important;
+}
+
+/* I due pannelli restano tecnicamente disponibili per l'apertura,
+   ma a riposo sono perfettamente identici e senza alcun bordo/ombra. */
+.panel-top,
+.panel-bottom,
+.invitation:not(.opened) .panel-top,
+.invitation:not(.opened) .panel-bottom {
+  background: #fff !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.panel-top::before, .panel-top::after,
+.panel-bottom::before, .panel-bottom::after,
+.invitation::before, .invitation::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+
+/* Monogramma più centrale */
+.dn-mark {
+  left: 50% !important;
+  top: 41.5% !important;
+  width: 76% !important;
+  max-width: 300px !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+/* Serif più corsivo/editoriale */
+.dn-letter {
+  font-family: "Bodoni Moda", "Didot", "Bodoni 72", "Times New Roman", serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  stroke: #000 !important;
+  stroke-width: 1.05 !important;
+  fill: rgba(0,0,0,0) !important;
+}
+
+/* Compensazione ottica: D e N si sovrappongono al centro */
+.dn-letter-d {
+  transform: translateX(18px) skewX(-5deg);
+  transform-origin: center;
+}
+
+.dn-letter-n {
+  transform: translateX(-20px) skewX(-5deg);
+  transform-origin: center;
+}
+
+.dn-couple,
+.cover-content-dn .cover-date {
+  color: #000 !important;
+}
+</style>
+
+
+<style id="opening-fix-v08">
+/* V08 — monogramma più pieno, compatto e otticamente centrato */
+.dn-mark {
+  left: 50% !important;
+  top: 41.5% !important;
+  width: 68% !important;
+  max-width: 265px !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.dn-svg {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Più vicino al peso della prima versione, ma con serif corsivo */
+.dn-letter {
+  font-family: "Bodoni 72", "Bodoni Moda", Didot, "Times New Roman", serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+  stroke: #000 !important;
+  stroke-width: 1.75 !important;
+  paint-order: stroke fill !important;
+  fill: rgba(0,0,0,0) !important;
+}
+
+/* D e N si incontrano al centro senza spingere la N sul bordo destro */
+.dn-letter-d {
+  transform: translateX(35px) skewX(-4deg) !important;
+  transform-origin: center !important;
+}
+
+.dn-letter-n {
+  transform: translateX(-52px) skewX(-4deg) !important;
+  transform-origin: center !important;
+}
+
+@keyframes dnFill {
+  from { fill: rgba(0,0,0,0); }
+  to   { fill: rgba(0,0,0,.09); }
+}
+</style>
+
+
+<style id="opening-party-fix-v09">
+/* V09 — D/N più grandi, meno sovrapposte e su diagonale */
+.dn-mark {
+  left: 50% !important;
+  top: 41.5% !important;
+  width: 76% !important;
+  max-width: 300px !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.dn-letter-d {
+  transform: translate(18px, -13px) skewX(-4deg) !important;
+  transform-origin: center !important;
+}
+
+.dn-letter-n {
+  transform: translate(-25px, 24px) skewX(-4deg) !important;
+  transform-origin: center !important;
+}
+
+/* PARTY — composizione centrale */
+.party-section,
+section.party,
+.party {
+  text-align: center !important;
+}
+
+.party-section .section-inner,
+.party .section-inner,
+.party-section .content,
+.party .content {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.party-section h2,
+.party h2,
+.party-section .display,
+.party .display,
+.party-section .party-title,
+.party .party-title {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+</style>
+
+
+<style id="party-fix-v10">
+/* Elimina definitivamente l'etichetta sopra il party */
+.party-section .small-label,
+.party .small-label {
+  display: none !important;
+}
+
+/* Titolo PARTY centrato come il blocco LA CHUPPAH */
+.party-section,
+section.party,
+.party {
+  text-align: center !important;
+}
+
+.party-title,
+.party-section .party-title,
+.party .party-title {
+  width: 100% !important;
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  transform: none !important;
+}
+
+.party-title .line,
+.party-section .party-title .line,
+.party .party-title .line {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+}
+</style>
+
+
+<style id="party-fix-v11">
+/* PARTY V11 — due righe realmente centrate sullo stesso asse,
+   con respiro verticale coerente con la partecipazione */
+.party-title,
+.party-section .party-title,
+.party .party-title {
+  width: max-content !important;
+  max-width: 92vw !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.party-title .line,
+.party-section .party-title .line,
+.party .party-title .line {
+  display: block !important;
+  width: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  transform: none !important;
+}
+
+/* prima riga */
+.party-title .line:first-child,
+.party-section .party-title .line:first-child,
+.party .party-title .line:first-child {
+  margin-bottom: clamp(18px, 2.2vw, 30px) !important;
+}
+
+/* seconda riga: nessun offset laterale o sovrapposizione */
+.party-title .line:last-child,
+.party-section .party-title .line:last-child,
+.party .party-title .line:last-child {
+  margin-top: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+}
+</style>
+
+
+<style id="opening-speed-css-v12">
+.intro,
+.invitation-wrap,
+.invitation,
+.panel-top,
+.panel-bottom,
+.cover-content,
+.inside-preview {
+  transition-duration: .55s !important;
+}
+</style>
+
+
+<style id="opening-clean-v13">
+/* Unifica il tono della cover con il primo hero: niente flash bianco -> crema */
+.intro,
+.invitation-wrap,
+.invitation,
+.panel-top,
+.panel-bottom,
+.cover-content,
+.inside-preview {
+  background-color: #f7f4ee !important;
+}
+
+/* Quando parte l'apertura, la cover esce come un unico foglio.
+   Nascondiamo la vecchia separazione dei pannelli durante la transizione. */
+body.opening-clean .panel-top,
+body.opening-clean .panel-bottom {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+body.opening-clean .invitation-wrap {
+  opacity: 0 !important;
+  transform: scale(.985) !important;
+  transition: opacity .28s ease, transform .28s ease !important;
+}
+
+body.opening-clean .intro {
+  opacity: 0 !important;
+  transition: opacity .32s ease !important;
+  pointer-events: none !important;
+}
+
+body.opening-clean #website {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+</style>
+
 </head>
 
 
@@ -1147,16 +1693,19 @@
 
 
         <!-- COPERTINA -->
-        <div class="cover-content" id="coverContent">
+        <div class="cover-content cover-content-dn" id="coverContent">
 
-          <div class="cover-monogram">
+          <div class="dn-mark" aria-hidden="true">
+            <svg class="dn-svg" viewBox="0 0 420 300" role="img">
+              <text class="dn-letter dn-letter-d" x="92" y="220">D</text>
+              <text class="dn-letter dn-letter-n" x="205" y="220">N</text>
+            </svg>
+          </div>
 
-            <span>D</span>
-
-            <span class="amp">&</span>
-
-            <span>N</span>
-
+          <div class="dn-couple">
+            <span>DANIEL</span>
+            <span class="dn-amp">&amp;</span>
+            <span>NOA</span>
           </div>
 
           <div class="cover-date">
@@ -1201,7 +1750,7 @@
       <div class="hero-inner">
 
         <div class="eyebrow reveal">
-          La nostra partecipazione
+          LET THE CELEBRATION BEGAN
         </div>
 
         <h1 class="names reveal">
@@ -1245,10 +1794,6 @@
 
       <div class="section-inner">
 
-        <div class="section-label reveal">
-          Daniel & Noa
-        </div>
-
         <!--
           SOSTITUIRE QUESTO TESTO
           CON IL TESTO EBRAICO ESATTO DELLA REFERENCE
@@ -1259,15 +1804,12 @@
           lang="he"
           dir="rtl"
         >
-          בשמחה ובהתרגשות אנו מזמינים אתכם
-          לחגוג עמנו את יום נישואינו
+          הלב שלי מצא את מקומו בלב שלך
         </div>
 
         <div class="translation reveal">
 
-          Con gioia ed emozione vi invitiamo
-          a condividere con noi
-          il giorno del nostro matrimonio.
+          "Il mio cuore ha trovato il suo posto nel tuo cuore"
 
         </div>
 
@@ -1283,46 +1825,21 @@
 
       <div class="section-inner">
 
-        <div class="section-label reveal">
-          Le nostre famiglie
-        </div>
-
         <div class="families-grid">
-
           <div class="family reveal">
-
-            <small>Daniel</small>
-
-            <h3>
-              Rosi
-              <br>&<br>
-              Giuseppe
-            </h3>
-
-            <p>
-              con gioia annunciano
-            </p>
-
+            <h3>Rosi <span class="family-amp">&</span> Giuseppe</h3>
           </div>
 
-
           <div class="family reveal">
-
-            <small>Noa</small>
-
-            <h3>
-              Vittorio
-              <br>&<br>
-              Simona
-            </h3>
-
-            <p>
-              con gioia annunciano
-            </p>
-
+            <h3>Vittorio <span class="family-amp">&</span> Simona</h3>
           </div>
-
         </div>
+
+        <p class="families-intro reveal">
+          Con gioia annunciano<br>il matrimonio dei loro figli
+        </p>
+
+        <div class="families-rule reveal"></div>
 
       </div>
 
@@ -1335,10 +1852,6 @@
     <section class="section welcome">
 
       <div class="section-inner">
-
-        <div class="section-label reveal">
-          Welcome
-        </div>
 
         <h2 class="editorial-title reveal">
           WELCOME
@@ -1364,10 +1877,6 @@
     <section class="section chuppah">
 
       <div class="section-inner">
-
-        <div class="section-label reveal">
-          La cerimonia
-        </div>
 
         <h2 class="editorial-title reveal">
           LA<br>CHUPPAH
@@ -1407,9 +1916,7 @@
 
       <div class="section-inner">
 
-        <div class="section-label reveal">
-          Dopo la cerimonia
-        </div>
+        <div class="section-label reveal"></div>
 
         <h2 class="party-title reveal">
 
@@ -1437,23 +1944,21 @@
           Daniel & Noa
         </div>
 
-        <h2 class="rsvp-title reveal">
-          R.S.V.P.
-        </h2>
+        <h2 class="rsvp-title reveal">R.S.V.P.</h2>
 
-        <p class="reveal">
-          Saremmo felici di condividere
-          questo giorno con voi.
-        </p>
+        <form class="rsvp-card reveal" id="rsvpForm">
+          <div class="rsvp-field">
+            <label for="guestName">Nome e cognome ospiti</label>
+            <input id="guestName" name="guestName" type="text" placeholder="Es: Famiglia Rossi" required>
+          </div>
 
-        <a
-          class="button reveal"
-          href="https://wa.me/393935124923?text=Ciao%20Noa%2C%20confermo%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa%20del%206%20giugno%202027."
-          target="_blank"
-          rel="noopener"
-        >
-          Conferma la tua presenza
-        </a>
+          <div class="rsvp-field">
+            <label for="guestCount">Numero partecipanti</label>
+            <input id="guestCount" name="guestCount" type="number" min="1" max="20" placeholder="Es: 2" required>
+          </div>
+
+          <button class="rsvp-submit" type="submit">Clicca per inviare</button>
+        </form>
 
       </div>
 
@@ -1807,6 +2312,21 @@
 
 
 
+  /* RSVP -> WHATSAPP */
+
+  const rsvpForm = document.getElementById("rsvpForm");
+
+  if (rsvpForm) {
+    rsvpForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const guestName = document.getElementById("guestName").value.trim();
+      const guestCount = document.getElementById("guestCount").value.trim();
+      const message = `Ciao Noa, confermo la presenza di ${guestName} al matrimonio di Daniel e Noa del 6 giugno 2027. Numero partecipanti: ${guestCount}.`;
+      window.open(`https://wa.me/393935124923?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+    });
+  }
+
+
   /* =========================================================
      SCROLL REVEAL
   ========================================================= */
@@ -1961,6 +2481,71 @@
 
 </script>
 
+
+
+<script id="opening-speed-v12">
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("openInvitation");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    /*
+      The original click handler builds the GSAP opening timeline.
+      Run immediately after it and accelerate active global timelines.
+      Destination remains the existing hero (DANIEL & NOA).
+    */
+    requestAnimationFrame(() => {
+      if (window.gsap && gsap.globalTimeline) {
+        gsap.globalTimeline.timeScale(2.35);
+      }
+    });
+  }, { capture: false });
+});
+</script>
+
+
+<script id="opening-clean-script-v13">
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("openInvitation");
+  const intro = document.querySelector(".intro");
+  const website = document.getElementById("website");
+  if (!btn || !intro || !website) return;
+
+  /* Intercetta prima del vecchio handler: niente fase intermedia a pannelli. */
+  btn.addEventListener("click", (e) => {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    /* Avvia la musica esistente senza cambiare file/volume. */
+    const audio = document.querySelector("audio");
+    if (audio) {
+      audio.volume = .75;
+      const p = audio.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+
+    document.body.classList.add("opening-clean");
+    document.body.classList.remove("locked");
+
+    /* Porta subito il documento all'inizio del vero invito. */
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      intro.style.display = "none";
+      website.style.opacity = "1";
+      website.style.visibility = "visible";
+
+      /* Piccolo refresh del viewport per riattivare correttamente
+         gli observer/reveal originali dopo la cover. */
+      window.dispatchEvent(new Event("resize"));
+      window.dispatchEvent(new Event("scroll"));
+
+      /* Le animazioni reveal originali restano gestite
+         dall'IntersectionObserver durante lo scroll. */
+    }, 320);
+  }, true);
+});
+</script>
 
 </body>
 </html>
