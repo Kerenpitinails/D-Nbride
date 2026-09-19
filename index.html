@@ -2,389 +2,1947 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta
+    name="description"
+    content="Daniel & Noa — 6 giugno 2027"
+  >
 
   <title>Daniel & Noa — 06.06.2027</title>
 
+  <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Italiana&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --paper: #f7f4ed;
+      --paper-light: #fbf9f4;
+      --ink: #171714;
+      --muted: #77736c;
+      --line: rgba(23, 23, 20, 0.18);
+
+      --serif: "Bodoni Moda", Georgia, serif;
+      --sans: "Inter", Helvetica, Arial, sans-serif;
+
+      --ease-luxury: cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 15%,
+          #fff 0%,
+          var(--paper-light) 35%,
+          var(--paper) 100%
+        );
+
+      color: var(--ink);
+      font-family: var(--sans);
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.locked {
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+
+    /* =========================================================
+       INTRO / INVITO CHIUSO
+    ========================================================= */
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 42%,
+          #fffdf8 0%,
+          #f8f5ee 45%,
+          #f1ede4 100%
+        );
+
+      transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+    }
+
+    .intro.finished {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      width: 100%;
+      min-height: 100dvh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        20px
+        max(24px, env(safe-area-inset-bottom));
+
+      position: relative;
+    }
+
+
+    /* =========================================================
+       INVITO FISICO
+    ========================================================= */
+
+    .invitation-wrap {
+      position: relative;
+
+      width: min(74vw, 330px);
+      aspect-ratio: 0.69;
+
+      perspective: 1400px;
+
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .invitation {
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.82),
+          rgba(246,242,233,.96)
+        );
+
+      border: 1px solid rgba(0,0,0,.05);
+
+      box-shadow:
+        0 35px 80px rgba(39, 33, 25, 0.13),
+        0 10px 25px rgba(39, 33, 25, 0.06);
+
+      overflow: hidden;
+
+      transform-origin: center;
+      will-change: transform;
+
+      animation: invitationEnter 1.5s var(--ease-luxury) both;
+    }
+
+    @keyframes invitationEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(20px) scale(.97);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    /* texture carta */
+
+    .invitation::after,
+    .open-paper::after {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: .17;
+
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          rgba(40,35,25,.025) 0px,
+          rgba(40,35,25,.025) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+
+      mix-blend-mode: multiply;
+    }
+
+
+    /* =========================================================
+       DUE PANNELLI - APERTURA VERTICALE
+    ========================================================= */
+
+    .panel {
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 50%;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          150deg,
+          #fbf9f4 0%,
+          #f5f1e8 100%
+        );
+
+      z-index: 5;
+
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+
+    .panel-top {
+      top: 0;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+    }
+
+    .panel-bottom {
+      bottom: 0;
+      border-top: 1px solid rgba(255,255,255,.5);
+    }
+
+
+    /* =========================================================
+       CONTENUTO FRONTALE
+    ========================================================= */
+
+    .cover-content {
+      position: absolute;
+      inset: 0;
+
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      pointer-events: none;
+
+      text-align: center;
+
+      color: var(--ink);
+
+      will-change: opacity, transform;
+    }
+
+    .cover-monogram {
+      font-family: var(--serif);
+      font-size: clamp(48px, 15vw, 76px);
+      font-weight: 400;
+      line-height: .75;
+      letter-spacing: -.06em;
+    }
+
+    .cover-monogram span {
+      display: block;
+    }
+
+    .cover-monogram .amp {
+      font-size: .46em;
+      line-height: 1.7;
+      font-style: italic;
+      letter-spacing: 0;
+    }
+
+    .cover-date {
+      position: absolute;
+      bottom: 10%;
+
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: .3em;
+    }
+
+
+    /* =========================================================
+       CONTENUTO INTERNO VISIBILE DURANTE APERTURA
+    ========================================================= */
+
+    .inside-preview {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      background: var(--paper-light);
+
+      opacity: 0;
+
+      z-index: 1;
+
+      padding: 30px;
+    }
+
+    .inside-preview h1 {
+      margin: 0;
+
+      font-family: var(--serif);
+      font-size: 42px;
+      font-weight: 400;
+      line-height: .92;
+
+      letter-spacing: -.045em;
+    }
+
+    .inside-preview .and {
+      display: block;
+      margin: 8px 0;
+
+      font-style: italic;
+      font-size: .6em;
+    }
+
+    .inside-preview p {
+      margin: 24px 0 0;
+
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .open-cta {
+      margin-top: 34px;
+
+      appearance: none;
+      border: 0;
+      background: transparent;
+
+      color: var(--ink);
+
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 400;
+
+      letter-spacing: .25em;
+
+      padding: 12px 4px;
+
+      cursor: pointer;
+
+      position: relative;
+
+      opacity: 0;
+
+      animation: ctaEnter 1s ease 1s forwards;
+
+      transition:
+        opacity .4s ease,
+        transform .4s ease;
+    }
+
+    .open-cta::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      bottom: 4px;
+
+      width: 100%;
+      height: 1px;
+
+      background: var(--ink);
+
+      transform:
+        translateX(-50%)
+        scaleX(.28);
+
+      transform-origin: center;
+
+      transition: transform .5s var(--ease-luxury);
+    }
+
+    .open-cta:hover::after {
+      transform:
+        translateX(-50%)
+        scaleX(1);
+    }
+
+    @keyframes ctaEnter {
+      to {
+        opacity: 1;
+      }
+    }
+
+
+    /* =========================================================
+       PAGINA
+    ========================================================= */
+
+    main {
+      position: relative;
+      z-index: 1;
+
+      background: var(--paper-light);
+
+      opacity: 0;
+
+      transition: opacity .5s ease;
+    }
+
+    main.visible {
+      opacity: 1;
+    }
+
+    .open-paper {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          #fbf9f4 0%,
+          #f7f4ed 100%
+        );
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+      min-height: 100svh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 110px 24px 80px;
+
+      position: relative;
+    }
+
+    .hero-inner {
+      width: min(100%, 800px);
+      margin: auto;
+    }
+
+    .eyebrow {
+      font-family: var(--sans);
+
+      font-size: 9px;
+      font-weight: 400;
+
+      text-transform: uppercase;
+
+      letter-spacing: .32em;
+
+      color: var(--muted);
+
+      margin-bottom: 34px;
+    }
+
+    .names {
+      margin: 0;
+
+      font-family: var(--serif);
+
+      font-size: clamp(64px, 16vw, 150px);
+      font-weight: 400;
+
+      line-height: .77;
+
+      letter-spacing: -.065em;
+    }
+
+    .names span {
+      display: block;
+    }
+
+    .names .ampersand {
+      font-size: .44em;
+      line-height: 1.35;
+
+      font-style: italic;
+
+      letter-spacing: 0;
+    }
+
+    .hero-rule {
+      width: 1px;
+      height: 75px;
+
+      margin: 45px auto;
+
+      background: var(--line);
+    }
+
+    .date-large {
+      font-family: var(--serif);
+
+      font-size: clamp(25px, 6vw, 40px);
+
+      font-weight: 400;
+
+      margin: 0;
+    }
+
+    .hebrew-date {
+      margin-top: 13px;
+
+      font-family: Georgia, "Times New Roman", serif;
+
+      font-size: 18px;
+
+      direction: rtl;
+      unicode-bidi: isolate;
+    }
+
+    .scroll-note {
+      position: absolute;
+
+      bottom: 28px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .25em;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       SEZIONI GENERALI
+    ========================================================= */
+
+    .section {
+      position: relative;
+
+      padding: 130px 24px;
+    }
+
+    .section-inner {
+      width: min(100%, 960px);
+
+      margin: 0 auto;
+    }
+
+    .section-label {
+      margin-bottom: 60px;
+
+      font-size: 9px;
+
+      letter-spacing: .3em;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+    .editorial-title {
+      margin: 0;
+
+      font-family: var(--serif);
+
+      font-size: clamp(45px, 10vw, 100px);
+
+      line-height: .9;
+
+      font-weight: 400;
+
+      letter-spacing: -.05em;
+    }
+
+    .small-copy {
+      max-width: 460px;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      font-weight: 300;
+    }
+
+
+    /* =========================================================
+       TESTO EBRAICO
+    ========================================================= */
+
+    .hebrew-section {
+      text-align: center;
+
+      padding-top: 160px;
+      padding-bottom: 160px;
+    }
+
+    .hebrew {
+      max-width: 700px;
+
+      margin: 0 auto;
+
+      direction: rtl;
+      unicode-bidi: isolate;
+
+      font-family:
+        "Times New Roman",
+        "Noto Serif Hebrew",
+        serif;
+
+      font-size: clamp(23px, 5vw, 38px);
+
+      line-height: 1.8;
+    }
+
+    .translation {
+      max-width: 550px;
+
+      margin: 42px auto 0;
+
+      font-family: var(--serif);
+
+      font-size: 18px;
+
+      font-style: italic;
+
+      line-height: 1.65;
+
+      color: #5e5a53;
+    }
+
+
+    /* =========================================================
+       FAMIGLIE
+    ========================================================= */
+
+    .families-grid {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 70px;
+
+      border-top: 1px solid var(--line);
+
+      padding-top: 70px;
+    }
+
+    .family {
+      text-align: center;
+    }
+
+    .family small {
+      display: block;
+
+      margin-bottom: 24px;
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .3em;
+
+      color: var(--muted);
+    }
+
+    .family h3 {
+      margin: 0;
+
+      font-family: var(--serif);
+
+      font-size: clamp(32px, 6vw, 54px);
+
+      font-weight: 400;
+
+      line-height: 1;
+    }
+
+    .family p {
+      margin-top: 17px;
+
+      font-size: 10px;
+
+      letter-spacing: .12em;
+
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       WELCOME
+    ========================================================= */
+
+    .welcome {
+      min-height: 90vh;
+
+      display: flex;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .welcome .section-inner {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+    }
+
+    .time {
+      margin: 18px 0 38px;
+
+      font-family: var(--serif);
+
+      font-size: clamp(72px, 18vw, 160px);
+
+      font-weight: 400;
+
+      line-height: 1;
+    }
+
+    .welcome-copy {
+      max-width: 390px;
+
+      margin: auto;
+
+      font-family: var(--serif);
+
+      font-size: 18px;
+
+      font-style: italic;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       CHUPPAH
+    ========================================================= */
+
+    .chuppah {
+      background: #171714;
+
+      color: #f8f5ee;
+
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .chuppah .section-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chuppah .section-label {
+      color: rgba(255,255,255,.55);
+    }
+
+    .chuppah .time {
+      margin-bottom: 50px;
+    }
+
+    .location-name {
+      margin: 0 0 14px;
+
+      font-family: var(--serif);
+
+      font-size: clamp(27px, 6vw, 46px);
+
+      font-weight: 400;
+    }
+
+    .address {
+      margin: 0;
+
+      font-size: 11px;
+
+      line-height: 1.8;
+
+      letter-spacing: .08em;
+
+      color: rgba(255,255,255,.65);
+    }
+
+
+    /* =========================================================
+       BUTTON
+    ========================================================= */
+
+    .button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-width: 190px;
+
+      margin-top: 45px;
+
+      padding: 17px 24px;
+
+      border: 1px solid currentColor;
+
+      text-decoration: none;
+
+      color: inherit;
+
+      font-size: 9px;
+
+      letter-spacing: .22em;
+
+      text-transform: uppercase;
+
+      transition:
+        background .4s ease,
+        color .4s ease,
+        transform .4s ease;
+    }
+
+    .button:hover {
+      background: #f8f5ee;
+
+      color: #171714;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
+       PARTY
+    ========================================================= */
+
+    .party {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      overflow: hidden;
+    }
+
+    .party-title {
+      font-family: var(--serif);
+
+      font-size: clamp(66px, 16vw, 160px);
+
+      font-weight: 400;
+
+      line-height: .76;
+
+      letter-spacing: -.065em;
+
+      margin: 0;
+    }
+
+    .party-title span {
+      display: block;
+    }
+
+    .party-title .italic {
+      font-style: italic;
+
+      padding-left: 12%;
+    }
+
+
+    /* =========================================================
+       RSVP
+    ========================================================= */
+
+    .rsvp {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      text-align: center;
+
+      border-top: 1px solid var(--line);
+    }
+
+    .rsvp .section-inner {
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+    }
+
+    .rsvp-title {
+      margin: 0;
+
+      font-family: var(--serif);
+
+      font-size: clamp(75px, 18vw, 170px);
+
+      font-weight: 400;
+
+      letter-spacing: -.06em;
+    }
+
+    .rsvp p {
+      margin: 25px auto 0;
+
+      max-width: 440px;
+
+      font-family: var(--serif);
+
+      font-size: 19px;
+
+      line-height: 1.6;
+    }
+
+    .rsvp .button:hover {
+      background: var(--ink);
+
+      color: var(--paper);
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      min-height: 50vh;
+
+      padding: 100px 24px 40px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: flex-end;
+
+      text-align: center;
+    }
+
+    .footer-monogram {
+      margin-bottom: 60px;
+
+      font-family: var(--serif);
+
+      font-size: 40px;
+
+      font-style: italic;
+    }
+
+    footer p {
+      margin: 5px;
+
+      font-size: 8px;
+
+      text-transform: uppercase;
+
+      letter-spacing: .25em;
+
+      color: var(--muted);
+    }
+
+
+    /* =========================================================
+       REVEAL
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(45px);
+
+      transition:
+        opacity 1.15s var(--ease-luxury),
+        transform 1.15s var(--ease-luxury);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 600px) {
+
+      .invitation-wrap {
+        width: min(72vw, 290px);
+      }
+
+      .section {
+        padding: 110px 22px;
+      }
+
+      .families-grid {
+        grid-template-columns: 1fr;
+
+        gap: 60px;
+      }
+
+      .hero {
+        padding-top: 90px;
+      }
+
+      .hero-rule {
+        height: 55px;
+
+        margin: 35px auto;
+      }
+
+      .names {
+        font-size: clamp(60px, 20vw, 90px);
+      }
+
+      .party-title {
+        font-size: 20vw;
+      }
+
+    }
+
+
+    /* =========================================================
+       RIDUZIONE MOVIMENTO
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+    }
+
+  </style>
 </head>
 
-<body>
 
-<main class="experience">
+<body class="locked">
 
-  <!-- =====================================================
-       HERO / BUSTA
-  ====================================================== -->
 
-  <section class="envelope-stage" id="envelopeStage">
+<!-- =========================================================
+     INVITO CHIUSO
+========================================================= -->
 
-    <div class="top-date">
-      DANIEL & NOA
-      <span>06 · 06 · 2027</span>
-    </div>
+<div class="intro" id="intro">
 
-    <div class="envelope-wrap" id="envelopeWrap">
+  <div class="intro-inner">
 
-      <!-- BUSTA -->
-      <div class="envelope" id="envelope">
+    <div class="invitation-wrap" id="invitationWrap">
 
-        <div class="envelope-back"></div>
+      <div class="invitation" id="invitation">
 
-        <!--
-          INVITO CHIUSO CHE USCIRÀ DALLA BUSTA
-        -->
-        <div class="closed-card" id="closedCard">
+        <!-- INTERNO -->
+        <div class="inside-preview" id="insidePreview">
 
-          <div class="card-line"></div>
-
-          <span class="bh-small">ב״ה</span>
-
-          <div class="closed-watermark">
-            DN
-          </div>
-
-          <div class="closed-content">
-
-            <p class="closed-hebrew">
-              יְבָרֶכְךָ ה׳ וְיִשְׁמְרֶךָ
-            </p>
-
-            <p class="closed-translation">
-              TI BENEDICA IL SIGNORE<br>
-              E TI CUSTODISCA
-            </p>
+          <div>
 
             <h1>
               DANIEL
-              <span>&</span>
+              <span class="and">&</span>
               NOA
             </h1>
 
-            <p class="closed-date">
-              DOMENICA<br>
-              6 GIUGNO 2027
-            </p>
-
-            <p class="closed-hebrew-date">
-              א׳ בְּסִיוָן תשפ״ז
-            </p>
+            <p>6 giugno 2027</p>
 
           </div>
 
         </div>
 
 
-        <!-- PATTA POSTERIORE -->
-        <div class="flap" id="flap"></div>
+        <!-- PANNELLO SUPERIORE -->
+        <div class="panel panel-top" id="panelTop"></div>
 
 
-        <!-- FRONTE DELLA BUSTA -->
-        <div class="envelope-front">
+        <!-- PANNELLO INFERIORE -->
+        <div class="panel panel-bottom" id="panelBottom"></div>
 
-          <div class="front-left"></div>
-          <div class="front-right"></div>
-          <div class="front-bottom"></div>
+
+        <!-- COPERTINA -->
+        <div class="cover-content" id="coverContent">
+
+          <div class="cover-monogram">
+
+            <span>D</span>
+
+            <span class="amp">&</span>
+
+            <span>N</span>
+
+          </div>
+
+          <div class="cover-date">
+            06.06.2027
+          </div>
 
         </div>
-
-
-        <!-- NASTRO -->
-        <div class="ribbon ribbon-h"></div>
-        <div class="ribbon ribbon-v"></div>
-
-
-        <!-- SIGILLO -->
-        <button
-          class="wax-seal"
-          id="waxSeal"
-          aria-label="Apri l'invito"
-        >
-          <span class="wax-inner">
-            DN
-          </span>
-        </button>
 
       </div>
 
-
-      <!-- TESTO INIZIALE -->
-      <button class="open-envelope-label" id="openEnvelopeLabel">
-        APRI L'INVITO
-      </button>
-
     </div>
 
-  </section>
+
+    <button
+      class="open-cta"
+      id="openInvitation"
+      type="button"
+      aria-label="Apri l'invito"
+    >
+      APRI L'INVITO
+    </button>
+
+  </div>
+
+</div>
 
 
-  <!-- =====================================================
-       INVITO ESTRATTO
-  ====================================================== -->
 
-  <section class="card-stage" id="cardStage">
+<!-- =========================================================
+     SITO / INVITO APERTO
+========================================================= -->
 
-    <div class="card-stage-header">
+<main id="website">
 
-      <p>
-        DANIEL & NOA
+  <div class="open-paper">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-inner">
+
+        <div class="eyebrow reveal">
+          La nostra partecipazione
+        </div>
+
+        <h1 class="names reveal">
+
+          <span>DANIEL</span>
+
+          <span class="ampersand">&</span>
+
+          <span>NOA</span>
+
+        </h1>
+
+        <div class="hero-rule"></div>
+
+        <p class="date-large reveal">
+          Domenica<br>
+          6 Giugno 2027
+        </p>
+
+        <div
+          class="hebrew-date reveal"
+          lang="he"
+          dir="rtl"
+        >
+          א׳ בסיוון תשפ״ז
+        </div>
+
+      </div>
+
+      <div class="scroll-note">
+        scorri
+      </div>
+
+    </section>
+
+
+
+    <!-- TESTO EBRAICO -->
+
+    <section class="section hebrew-section">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          Daniel & Noa
+        </div>
+
+        <!--
+          SOSTITUIRE QUESTO TESTO
+          CON IL TESTO EBRAICO ESATTO DELLA REFERENCE
+        -->
+
+        <div
+          class="hebrew reveal"
+          lang="he"
+          dir="rtl"
+        >
+          בשמחה ובהתרגשות אנו מזמינים אתכם
+          לחגוג עמנו את יום נישואינו
+        </div>
+
+        <div class="translation reveal">
+
+          Con gioia ed emozione vi invitiamo
+          a condividere con noi
+          il giorno del nostro matrimonio.
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- FAMIGLIE -->
+
+    <section class="section families">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          Le nostre famiglie
+        </div>
+
+        <div class="families-grid">
+
+          <div class="family reveal">
+
+            <small>Daniel</small>
+
+            <h3>
+              Rosi
+              <br>&<br>
+              Pino
+            </h3>
+
+            <p>
+              con gioia annunciano
+            </p>
+
+          </div>
+
+
+          <div class="family reveal">
+
+            <small>Noa</small>
+
+            <h3>
+              Vittorio
+              <br>&<br>
+              Simona
+            </h3>
+
+            <p>
+              con gioia annunciano
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- WELCOME -->
+
+    <section class="section welcome">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          Welcome
+        </div>
+
+        <h2 class="editorial-title reveal">
+          WELCOME
+        </h2>
+
+        <div class="time reveal">
+          16:30
+        </div>
+
+        <p class="welcome-copy reveal">
+          Vi aspettiamo per accogliervi
+          e iniziare insieme questo giorno speciale.
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CHUPPAH -->
+
+    <section class="section chuppah">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          La cerimonia
+        </div>
+
+        <h2 class="editorial-title reveal">
+          LA<br>CHUPPAH
+        </h2>
+
+        <div class="time reveal">
+          17:30
+        </div>
+
+        <h3 class="location-name reveal">
+          Villa dei Desideri
+        </h3>
+
+        <p class="address reveal">
+          Via del Tiro a Segno 4<br>
+          Cerveteri, Roma
+        </p>
+
+        <a
+          class="button reveal"
+          href="https://www.google.com/maps/search/?api=1&query=Villa+dei+Desideri+Via+del+Tiro+a+Segno+4+Cerveteri"
+          target="_blank"
+          rel="noopener"
+        >
+          Come arrivare
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- PARTY -->
+
+    <section class="section party">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          Dopo la cerimonia
+        </div>
+
+        <h2 class="party-title reveal">
+
+          <span>FINALLY,</span>
+
+          <span class="italic">
+            THE PARTY
+          </span>
+
+        </h2>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- RSVP -->
+
+    <section class="section rsvp">
+
+      <div class="section-inner">
+
+        <div class="section-label reveal">
+          Daniel & Noa
+        </div>
+
+        <h2 class="rsvp-title reveal">
+          R.S.V.P.
+        </h2>
+
+        <p class="reveal">
+          Saremmo felici di condividere
+          questo giorno con voi.
+        </p>
+
+        <a
+          class="button reveal"
+          href="https://wa.me/393935124923?text=Ciao%20Noa%2C%20confermo%20la%20mia%20presenza%20al%20matrimonio%20di%20Daniel%20e%20Noa%20del%206%20giugno%202027."
+          target="_blank"
+          rel="noopener"
+        >
+          Conferma la tua presenza
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+      <div class="footer-monogram reveal">
+        D & N
+      </div>
+
+      <p class="reveal">
+        Daniel & Noa
       </p>
 
-      <span>
-        06 · 06 · 2027
-      </span>
+      <p class="reveal">
+        06.06.2027
+      </p>
 
-    </div>
+    </footer>
 
 
-    <!-- PARTECIPAZIONE A 3 PANNELLI -->
-    <div class="invitation" id="invitation">
-
-
-      <!-- =================================================
-           PANNELLO 1
-      ================================================== -->
-
-      <article class="panel panel-1">
-
-        <div class="panel-border"></div>
-
-        <span class="bh">
-          ב״ה
-        </span>
-
-        <div class="watermark">
-          DN
-        </div>
-
-        <div class="panel-content panel-content-1">
-
-          <p class="hebrew-main">
-            יְבָרֶכְךָ ה׳ וְיִשְׁמְרֶךָ
-          </p>
-
-          <p class="translation">
-            “TI BENEDICA IL SIGNORE<br>
-            E TI CUSTODISCA”
-          </p>
-
-
-          <div class="families">
-
-            <div>
-              <p class="family-names">
-                ROSI & PINO
-              </p>
-
-              <span>
-                GENITORI DI DANIEL
-              </span>
-            </div>
-
-
-            <div>
-              <p class="family-names">
-                VITTORIO & SIMONA
-              </p>
-
-              <span>
-                GENITORI DI NOA
-              </span>
-            </div>
-
-          </div>
-
-
-          <p class="announcement">
-            ANNUNCIANO CON GIOIA<br>
-            IL MATRIMONIO DEI LORO FIGLI
-          </p>
-
-
-          <h2 class="main-names">
-            DANIEL
-            <span>&</span>
-            NOA
-          </h2>
-
-
-          <!-- CLICK PER DISPIEGARE -->
-          <button
-            class="unfold-button"
-            id="unfoldButton"
-          >
-            <span>SCOPRI L'INVITO</span>
-            <i></i>
-          </button>
-
-        </div>
-
-      </article>
-
-
-      <!-- =================================================
-           PANNELLO 2
-      ================================================== -->
-
-      <article class="panel panel-2">
-
-        <div class="panel-border"></div>
-
-        <div class="watermark watermark-middle">
-          DN
-        </div>
-
-        <div class="panel-content panel-content-2">
-
-          <p class="little-label">
-            DOMENICA
-          </p>
-
-          <div class="big-day">
-            06
-          </div>
-
-          <p class="month">
-            GIUGNO 2027
-          </p>
-
-          <p class="hebrew-date">
-            א׳ בְּסִיוָן תשפ״ז
-          </p>
-
-
-          <div class="events">
-
-            <div class="event">
-
-              <p class="event-script">
-                Welcome & Cheers
-              </p>
-
-              <p class="event-hour">
-                ORE 16:30
-              </p>
-
-            </div>
-
-
-            <div class="event-divider"></div>
-
-
-            <div class="event">
-
-              <p class="event-script">
-                Chuppah
-              </p>
-
-              <p class="event-hour">
-                ORE 17:30
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </article>
-
-
-      <!-- =================================================
-           PANNELLO 3
-      ================================================== -->
-
-      <article class="panel panel-3">
-
-        <div class="panel-border"></div>
-
-        <div class="watermark watermark-bottom">
-          DN
-        </div>
-
-        <div class="panel-content panel-content-3">
-
-          <p class="little-label">
-            PRESSO
-          </p>
-
-          <h3 class="venue">
-            VILLA<br>
-            DEI DESIDERI
-          </h3>
-
-          <p class="address">
-            VIA DEL TIRO A SEGNO 4<br>
-            CERVETERI
-          </p>
-
-
-          <div class="ornamental-line">
-            <span></span>
-          </div>
-
-
-          <p class="celebration">
-            SEGUIRANNO FESTEGGIAMENTI
-          </p>
-
-
-          <p class="ending-script">
-            Daniel & Noa
-          </p>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       RSVP
-  ====================================================== -->
-
-  <section class="rsvp" id="rsvp">
-
-    <p class="rsvp-label">
-      RSVP
-    </p>
-
-    <h2>
-      Ci sarai?
-    </h2>
-
-    <p class="rsvp-text">
-      Saremo felici di condividere<br>
-      questo giorno con te.
-    </p>
-
-    <a
-      id="whatsappButton"
-      class="whatsapp-button"
-      href="#"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      CONFERMA LA TUA PRESENZA
-    </a>
-
-    <p class="rsvp-small">
-      DANIEL & NOA · 06.06.2027
-    </p>
-
-  </section>
+  </div>
 
 </main>
 
-<script src="script.js"></script>
+
+
+<!-- GSAP -->
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js">
+</script>
+
+
+<script>
+
+  /* =========================================================
+     ELEMENTI
+  ========================================================= */
+
+  const body = document.body;
+
+  const intro = document.getElementById("intro");
+
+  const invitationWrap =
+    document.getElementById("invitationWrap");
+
+  const invitation =
+    document.getElementById("invitation");
+
+  const panelTop =
+    document.getElementById("panelTop");
+
+  const panelBottom =
+    document.getElementById("panelBottom");
+
+  const coverContent =
+    document.getElementById("coverContent");
+
+  const insidePreview =
+    document.getElementById("insidePreview");
+
+  const openButton =
+    document.getElementById("openInvitation");
+
+  const website =
+    document.getElementById("website");
+
+
+  let opened = false;
+
+
+
+  /* =========================================================
+     APERTURA INVITO
+  ========================================================= */
+
+  function openInvitation() {
+
+    if (opened) return;
+
+    opened = true;
+
+
+    /* blocco doppio click */
+
+    openButton.disabled = true;
+
+
+    /* se reduced motion */
+
+    const reducedMotion =
+      window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+
+    if (reducedMotion || typeof gsap === "undefined") {
+
+      intro.classList.add("finished");
+
+      website.classList.add("visible");
+
+      body.classList.remove("locked");
+
+      revealVisibleElements();
+
+      return;
+
+    }
+
+
+    /* =======================================================
+       TIMELINE
+    ======================================================= */
+
+    const tl = gsap.timeline({
+
+      defaults: {
+        ease: "power2.inOut"
+      }
+
+    });
+
+
+
+    /* 1. CTA scompare */
+
+    tl.to(
+      openButton,
+      {
+        opacity: 0,
+        y: 8,
+        duration: .35
+      },
+      0
+    );
+
+
+
+    /* 2. invito cresce leggermente */
+
+    tl.to(
+      invitationWrap,
+      {
+        scale: 1.035,
+        duration: .8,
+        ease: "power2.out"
+      },
+      .05
+    );
+
+
+
+    /* 3. copertina sparisce */
+
+    tl.to(
+      coverContent,
+      {
+        opacity: 0,
+        scale: .98,
+        duration: .45
+      },
+      .20
+    );
+
+
+
+    /* 4. interno emerge */
+
+    tl.to(
+      insidePreview,
+      {
+        opacity: 1,
+        duration: .7
+      },
+      .35
+    );
+
+
+
+    /* =======================================================
+       APERTURA VERTICALE REALE
+    ======================================================= */
+
+
+    /* pannello superiore sale */
+
+    tl.to(
+      panelTop,
+      {
+        yPercent: -102,
+
+        duration: 1.45,
+
+        ease:
+          "cubic-bezier(0.76,0,0.24,1)"
+      },
+      .50
+    );
+
+
+    /* pannello inferiore scende */
+
+    tl.to(
+      panelBottom,
+      {
+        yPercent: 102,
+
+        duration: 1.45,
+
+        ease:
+          "cubic-bezier(0.76,0,0.24,1)"
+      },
+      .50
+    );
+
+
+
+    /* =======================================================
+       INVITO DIVENTA PAGINA
+    ======================================================= */
+
+    tl.to(
+      invitationWrap,
+      {
+
+        width: "100vw",
+
+        height: "100dvh",
+
+        scale: 1,
+
+        duration: 1.15,
+
+        ease: "power3.inOut"
+
+      },
+      1.35
+    );
+
+
+    tl.to(
+      invitation,
+      {
+
+        borderRadius: 0,
+
+        boxShadow:
+          "0 0 0 rgba(0,0,0,0)",
+
+        duration: .9
+
+      },
+      1.45
+    );
+
+
+
+    /* sito appare dietro la carta */
+
+    tl.call(
+      () => {
+
+        website.classList.add("visible");
+
+      },
+      null,
+      1.75
+    );
+
+
+
+    /* preview si fonde con hero */
+
+    tl.to(
+      insidePreview,
+      {
+
+        opacity: 0,
+
+        duration: .65
+
+      },
+      2.05
+    );
+
+
+
+    /* intro scompare */
+
+    tl.to(
+      intro,
+      {
+
+        opacity: 0,
+
+        duration: .75,
+
+        ease: "power2.inOut"
+
+      },
+      2.10
+    );
+
+
+
+    /* abilita scroll */
+
+    tl.call(
+      () => {
+
+        intro.classList.add("finished");
+
+        body.classList.remove("locked");
+
+        window.scrollTo(0, 0);
+
+        revealVisibleElements();
+
+      },
+      null,
+      2.80
+    );
+
+  }
+
+
+
+  openButton.addEventListener(
+    "click",
+    openInvitation
+  );
+
+
+
+  /* =========================================================
+     SCROLL REVEAL
+  ========================================================= */
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+  const observer =
+    new IntersectionObserver(
+
+      (entries) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add(
+              "visible"
+            );
+
+            observer.unobserve(
+              entry.target
+            );
+
+          }
+
+        });
+
+      },
+
+      {
+
+        threshold: 0.12,
+
+        rootMargin:
+          "0px 0px -8% 0px"
+
+      }
+
+    );
+
+
+  revealElements.forEach((element) => {
+
+    observer.observe(element);
+
+  });
+
+
+
+  /* =========================================================
+     HERO VISIBILE DOPO APERTURA
+  ========================================================= */
+
+  function revealVisibleElements() {
+
+    document
+      .querySelectorAll(
+        ".hero .reveal"
+      )
+      .forEach(
+        (element, index) => {
+
+          setTimeout(
+            () => {
+
+              element.classList.add(
+                "visible"
+              );
+
+            },
+
+            160 * index
+          );
+
+        }
+      );
+
+  }
+
+
+
+  /* =========================================================
+     PARALLAX MOLTO LEGGERO
+  ========================================================= */
+
+  let ticking = false;
+
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      if (ticking) return;
+
+      ticking = true;
+
+
+      requestAnimationFrame(
+        () => {
+
+          const scrollY =
+            window.scrollY;
+
+          const partyTitle =
+            document.querySelector(
+              ".party-title"
+            );
+
+
+          if (partyTitle) {
+
+            const rect =
+              partyTitle
+                .getBoundingClientRect();
+
+
+            if (
+              rect.top <
+              window.innerHeight &&
+              rect.bottom > 0
+            ) {
+
+              const movement =
+                (
+                  window.innerHeight -
+                  rect.top
+                ) * .025;
+
+
+              partyTitle.style.transform =
+                `translate3d(0, ${movement}px, 0)`;
+
+            }
+
+          }
+
+
+          ticking = false;
+
+        }
+      );
+
+    },
+
+    {
+      passive: true
+    }
+
+  );
+
+</script>
+
 
 </body>
 </html>
