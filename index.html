@@ -1,491 +1,228 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel & Noa — Partecipazione di Matrimonio</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Great+Vibes&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <title>Wedding Invitation</title>
 
-        :root {
-            --bg-body: #ece8e1;
-            --paper-bg: #fcfbf7;
-            --paper-border: #e6dfd3;
-            --gold-accent: #c4a676;
-            --text-dark: #2c2722;
-            --text-muted: #6e665e;
-            --wax-dark: #634b3c;
-            --wax-light: #836754;
-            --ribbon-bg: #e8e2d7;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        body {
-            background-color: var(--bg-body);
-            background-image: radial-gradient(#dfd9cd 1px, transparent 1px);
-            background-size: 20px 20px;
-            font-family: 'Cormorant Garamond', serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 25px 15px;
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Italiana&display=swap"
+    rel="stylesheet"
+  >
 
-        .main-container {
-            width: 100%;
-            max-width: 440px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            perspective: 1000px;
-        }
-
-        /* ----------------------------------
-           BUSTA CON NASTRO E CERALACCA
-        ----------------------------------- */
-        .envelope-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            height: 260px;
-            cursor: pointer;
-            z-index: 20;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
-        }
-
-        .envelope {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #faf7f0;
-            border-radius: 8px;
-            border: 1px solid var(--paper-border);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 6px 15px rgba(0,0,0,0.04);
-            overflow: hidden;
-        }
-
-        /* Texture della busta */
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(#d3cbbd 0.5px, transparent 0.5px);
-            background-size: 8px 8px;
-            opacity: 0.3;
-            pointer-events: none;
-        }
-
-        /* Risvolti della busta */
-        .envelope-pocket {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 190px solid #f3eeef;
-            border-right: 190px solid #f3eeef;
-            border-bottom: 145px solid #eae3d8;
-            border-radius: 0 0 8px 8px;
-            z-index: 2;
-        }
-
-        @media (max-width: 400px) {
-            .envelope-pocket {
-                border-left-width: 170px;
-                border-right-width: 170px;
-                border-bottom-width: 130px;
-            }
-        }
-
-        .envelope-flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 190px solid transparent;
-            border-right: 190px solid transparent;
-            border-top: 150px solid #e3dbc2;
-            transform-origin: top;
-            transition: transform 0.6s ease;
-            z-index: 3;
-        }
-
-        @media (max-width: 400px) {
-            .envelope-flap {
-                border-left-width: 170px;
-                border-right-width: 170px;
-                border-top-width: 135px;
-            }
-        }
-
-        /* Nastro di seta neutro */
-        .silk-ribbon {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 48px;
-            height: 100%;
-            background: linear-gradient(90deg, #dfd7ca 0%, #f7f3eb 50%, #dfd7ca 100%);
-            box-shadow: 0 0 10px rgba(0,0,0,0.08);
-            z-index: 4;
-            border-left: 1px solid rgba(255,255,255,0.7);
-            border-right: 1px solid rgba(255,255,255,0.7);
-        }
-
-        /* Sigillo di ceralacca D&N */
-        .wax-seal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 65px;
-            height: 65px;
-            background: radial-gradient(circle, var(--wax-light) 0%, var(--wax-dark) 100%);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.25), inset 0 2px 4px rgba(255,255,255,0.2);
-            z-index: 5;
-            border: 2px solid #523c2e;
-            transition: transform 0.3s ease;
-        }
-
-        .envelope-wrapper:hover .wax-seal {
-            transform: translate(-50%, -50%) scale(1.05);
-        }
-
-        .seal-initials {
-            font-family: 'Great Vibes', cursive;
-            color: #f7f3eb;
-            font-size: 1.6rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-            letter-spacing: 1px;
-        }
-
-        .click-hint {
-            position: absolute;
-            bottom: -40px;
-            width: 100%;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
-            animation: pulseHint 2s infinite;
-        }
-
-        @keyframes pulseHint {
-            0%, 100% { opacity: 0.5; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(-3px); }
-        }
-
-        /* ----------------------------------
-           PARTECIPAZIONE A 3 PANNELLI
-        ----------------------------------- */
-        .invitation-card {
-            position: relative;
-            width: 100%;
-            max-width: 390px;
-            background: var(--paper-bg);
-            border: 1px solid var(--paper-border);
-            border-radius: 6px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.07), 0 5px 15px rgba(0,0,0,0.03);
-            padding: 40px 25px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(40px) scale(0.96);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s;
-        }
-
-        /* Bordo interno dorato elegante */
-        .inner-frame {
-            position: absolute;
-            top: 12px; left: 12px; right: 12px; bottom: 12px;
-            border: 1px solid var(--gold-accent);
-            opacity: 0.45;
-            pointer-events: none;
-            border-radius: 4px;
-        }
-
-        /* Texture Carta Cotone / Amalfi */
-        .cotton-texture {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: radial-gradient(#cfc5b5 0.6px, transparent 0.6px);
-            background-size: 9px 9px;
-            opacity: 0.22;
-            pointer-events: none;
-            border-radius: 6px;
-        }
-
-        .panel {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Pannello 1: Intestazione */
-        .monogram {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            letter-spacing: 4px;
-            color: var(--gold-accent);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .announcement {
-            font-size: 0.95rem;
-            font-style: italic;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-        }
-
-        .names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.6rem;
-            font-weight: 400;
-            color: var(--text-dark);
-            margin: 12px 0 6px;
-            line-height: 1.15;
-        }
-
-        .ampersand {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-style: italic;
-            color: var(--gold-accent);
-            display: inline-block;
-            margin: 0 4px;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 22px 0;
-            color: var(--gold-accent);
-            opacity: 0.7;
-        }
-
-        .divider::before, .divider::after {
-            content: '';
-            height: 1px;
-            width: 40px;
-            background: var(--gold-accent);
-            margin: 0 10px;
-        }
-
-        /* Pannello 2: Dettagli Evento */
-        .event-day {
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-        }
-
-        .event-date {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: var(--text-dark);
-            margin: 4px 0;
-        }
-
-        .event-time {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: var(--text-muted);
-        }
-
-        .venue-container {
-            margin-top: 18px;
-        }
-
-        .venue-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            letter-spacing: 1px;
-        }
-
-        .venue-location {
-            font-size: 1rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Pannello 3: Matrimonio Ebraico & RSVP */
-        .hebrew-box {
-            background: rgba(244, 239, 230, 0.6);
-            border: 1px dashed var(--gold-accent);
-            border-radius: 4px;
-            padding: 16px 14px;
-            margin: 10px 0 22px;
-        }
-
-        .hebrew-text {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #4a3a2c;
-            direction: rtl;
-            margin-bottom: 8px;
-            line-height: 1.4;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .hebrew-translation {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--text-muted);
-            line-height: 1.35;
-        }
-
-        .rsvp-note {
-            font-size: 0.85rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .rsvp-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 14px 20px;
-            background: var(--wax-dark);
-            color: #fcfbf7;
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 3px;
-            box-shadow: 0 4px 12px rgba(84, 61, 50, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .rsvp-btn:hover, .rsvp-btn:active {
-            background: #3d2c20;
-            box-shadow: 0 6px 16px rgba(84, 61, 50, 0.35);
-            transform: translateY(-1px);
-        }
-
-        /* Stato di apertura */
-        .is-open .envelope-wrapper {
-            opacity: 0;
-            transform: scale(0.85) translateY(-50px);
-            pointer-events: none;
-            position: absolute;
-        }
-
-        .is-open .invitation-card {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-    </style>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="main-container" id="mainContainer">
-        
-        <!-- BUSTA DA LETTERA -->
-        <div class="envelope-wrapper" onclick="openEnvelope()">
-            <div class="envelope">
-                <div class="envelope-flap"></div>
-                <div class="envelope-pocket"></div>
-                <div class="silk-ribbon"></div>
-                <div class="wax-seal">
-                    <span class="seal-initials">D & N</span>
-                </div>
+  <main class="wedding-page">
+
+    <!-- INTRO -->
+    <section class="intro">
+
+      <p class="intro-small">YOU ARE INVITED</p>
+
+      <h1 class="intro-title">
+        06 · 06 · 27
+      </h1>
+
+      <p class="intro-text">
+        Un invito speciale per un giorno speciale
+      </p>
+
+    </section>
+
+
+    <!-- SCENA BUSTA -->
+    <section class="invitation-scene">
+
+      <div class="envelope" id="envelope">
+
+        <!-- RETRO BUSTA -->
+        <div class="envelope-back"></div>
+
+
+        <!-- INVITO INTERNO -->
+        <div class="invitation" id="invitation">
+
+          <!-- PANNELLO SINISTRO -->
+          <section class="panel panel-left">
+
+            <div class="panel-content">
+
+              <span class="small-label">
+                WEDDING
+              </span>
+
+              <div class="monogram">
+                N
+                <span>&</span>
+                N
+              </div>
+
+              <p class="small-copy">
+                Con grande gioia<br>
+                vi invitiamo a celebrare<br>
+                insieme a noi.
+              </p>
+
             </div>
-            <div class="click-hint">✨ Tokka per aprire l'invito ✨</div>
+
+          </section>
+
+
+          <!-- PANNELLO CENTRALE -->
+          <section class="panel panel-center">
+
+            <div class="panel-content">
+
+              <p class="small-label">
+                SAVE THE DATE
+              </p>
+
+              <h2 class="couple-name">
+                Nome
+                <span>&</span>
+                Nome
+              </h2>
+
+              <div class="ornament">
+                ✦
+              </div>
+
+              <p class="date">
+                6 Giugno 2027
+              </p>
+
+              <p class="time">
+                ore 17:00
+              </p>
+
+              <div class="location">
+
+                <strong>
+                  Villa dei Desideri
+                </strong>
+
+                <span>
+                  Cerveteri
+                </span>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- PANNELLO DESTRO -->
+          <section class="panel panel-right">
+
+            <div class="panel-content">
+
+              <p class="small-label">
+                CELEBRATE WITH US
+              </p>
+
+              <p class="quote">
+                Una giornata da vivere,<br>
+                un ricordo da custodire.
+              </p>
+
+              <div class="divider"></div>
+
+              <p class="small-copy">
+                Saremo felici di condividere
+                questo momento con voi.
+              </p>
+
+            </div>
+
+          </section>
+
         </div>
 
-        <!-- PARTECIPAZIONE INTERNA A 3 PANNELLI VERTICALI -->
-        <div class="invitation-card">
-            <div class="inner-frame"></div>
-            <div class="cotton-texture"></div>
 
-            <!-- PANNELLO 1: SUPERIORE -->
-            <div class="panel panel-top">
-                <p class="monogram">D & N</p>
-                <p class="announcement">Con grande gioia annunciano il loro matrimonio</p>
-                <h1 class="names">Daniel <span class="ampersand">&</span> Noa</h1>
-                <div class="divider">❖</div>
-            </div>
+        <!-- FRONTE BUSTA -->
+        <div class="envelope-front">
 
-            <!-- PANNELLO 2: CENTRALE -->
-            <div class="panel panel-middle">
-                <p class="event-day">Domenica</p>
-                <p class="event-date">6 Giugno 2027</p>
-                <p class="event-time">ore 17:00</p>
-                
-                <div class="venue-container">
-                    <p class="venue-title">Villa dei Desideri</p>
-                    <p class="venue-location">Via Rosa, Cerveteri (Roma)</p>
-                </div>
-                <div class="divider">❖</div>
-            </div>
-
-            <!-- PANNELLO 3: INFERIORE (MATRIMONIO EBRAICO & RSVP) -->
-            <div class="panel panel-bottom">
-                <div class="hebrew-box">
-                    <p class="hebrew-text">ק֥וֹל שָׂשׂ֛וֹן וְק֥וֹל שִׂמְחָ֖ה ק֣וֹל חָתָ֣ן וְק֣וֹל כַּלָּ֑ה</p>
-                    <p class="hebrew-translation">"Il suono di gioia e il suono di allegria, la voce dello sposo e la voce della sposa"</p>
-                </div>
-
-                <div class="rsvp-section">
-                    <p class="rsvp-note">È gradita gentile conferma entro il 1° Maggio 2027</p>
-                    <a href="https://wa.me/393517141553?text=Ciao%20Daniel%20e%20Noa!%20Confermo%20con%20grande%20gioia%20la%20mia%20presenza%20al%20vostro%20matrimonio!" target="_blank" class="rsvp-btn">
-                        <span>CONFERMA PRESENZA (RSVP)</span>
-                    </a>
-                </div>
-            </div>
+          <div class="front-left"></div>
+          <div class="front-right"></div>
+          <div class="front-bottom"></div>
 
         </div>
 
-    </div>
 
-    <script>
-        let hasOpened = false;
+        <!-- PATTA -->
+        <div class="flap"></div>
 
-        function openEnvelope() {
-            if (hasOpened) return;
-            hasOpened = true;
-            document.getElementById('mainContainer').classList.add('is-open');
-        }
 
-        // Apertura automatica elegante dopo 1.2 secondi dall'ingresso
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                openEnvelope();
-            }, 1200);
-        });
-    </script>
+        <!-- NASTRO -->
+        <div class="ribbon ribbon-horizontal"></div>
+        <div class="ribbon ribbon-vertical"></div>
+
+
+        <!-- SIGILLO -->
+        <button
+          class="wax-seal"
+          id="waxSeal"
+          aria-label="Apri l'invito"
+        >
+          <span class="seal-border">
+            N&N
+          </span>
+        </button>
+
+      </div>
+
+
+      <button
+        class="open-label"
+        id="openButton"
+      >
+        APRI L'INVITO
+      </button>
+
+    </section>
+
+
+    <!-- RSVP -->
+    <section class="rsvp" id="rsvp">
+
+      <p class="small-label">
+        RSVP
+      </p>
+
+      <h2>
+        Ci sarai?
+      </h2>
+
+      <p>
+        Saremo felici di averti con noi.
+        Conferma la tua presenza direttamente
+        agli sposi.
+      </p>
+
+      <a
+        class="whatsapp-button"
+        href="#"
+        id="whatsappButton"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CONFERMA LA TUA PRESENZA
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
 </body>
 </html>
