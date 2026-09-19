@@ -29,12 +29,192 @@ body {
     transition: transform 0.6s ease;
 }
 
-/* Texture Carta Cotone Neutra */
 .inner-paper {
     position: relative;
     padding: 40px 25px;
     text-align: center;
     background: #faf8f5;
+    border: 1px solid #eae5dd;
+    border-radius: 4px;
+}
+
+.paper-texture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#e2ded7 0.5px, transparent 0.5px);
+    background-size: 8px 8px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(250, 248, 245, 0.95);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s;
+    border-radius: 4px;
+}
+
+.ribbon-vertical {
+    position: absolute;
+    width: 45px;
+    height: 100%;
+    background: #e3ded6;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.05);
+    border-left: 1px dashed #d1c9bd;
+    border-right: 1px dashed #d1c9bd;
+}
+
+.ribbon-bow {
+    position: absolute;
+    width: 70px;
+    height: 25px;
+    background: #d8d1c5;
+    border-radius: 50px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.wax-seal {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle, #7a5c4d 0%, #543d32 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 11;
+    border: 2px solid #63493c;
+}
+
+.wax-seal span {
+    font-family: 'Great Vibes', cursive;
+    color: #e3ded6;
+    font-size: 1.5rem;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: 30px;
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.script-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    font-weight: 400;
+    color: #38332e;
+    line-height: 1;
+}
+
+.ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #8c8278;
+    margin: 2px 0;
+    display: block;
+}
+
+.announcement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #787068;
+    margin-top: 8px;
+}
+
+.line-divider {
+    width: 40px;
+    height: 1px;
+    background: #d1c8bc;
+    margin: 20px auto;
+}
+
+.day-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #787068;
+}
+
+.script-date {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    color: #38332e;
+    margin: 2px 0;
+}
+
+.time {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #787068;
+}
+
+.location-group {
+    margin-top: 15px;
+}
+
+.script-location {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: #38332e;
+    line-height: 1.1;
+}
+
+.address {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: #665f57;
+}
+
+.reception-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #787068;
+    margin-bottom: 5px;
+}
+
+.rsvp-btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 10px 22px;
+    background: #543d32;
+    color: #faf8f5;
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+.rsvp-btn:hover {
+    background: #382922;
+}
+
+.is-open .cover {
+    opacity: 0;
+    visibility: hidden;
+}    background: #faf8f5;
     border: 1px solid #eae5dd;
     border-radius: 4px;
 }
