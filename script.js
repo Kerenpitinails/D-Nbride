@@ -1,58 +1,88 @@
-const envelope = document.getElementById("envelope");
-const waxSeal = document.getElementById("waxSeal");
-const openButton = document.getElementById("openButton");
+/* ==========================================
+   ELEMENTS
+========================================== */
 
-const rsvp = document.getElementById("rsvp");
+const invitation =
+  document.getElementById(
+    "invitationWrapper"
+  );
+
+const openButton =
+  document.getElementById(
+    "openButton"
+  );
+
+const rsvp =
+  document.getElementById(
+    "rsvp"
+  );
+
 const whatsappButton =
-  document.getElementById("whatsappButton");
+  document.getElementById(
+    "whatsappButton"
+  );
 
 
-let isOpen = false;
+let invitationOpen = false;
 
 
-/* =========================
-   APERTURA INVITO
-========================= */
+/* ==========================================
+   OPEN INVITATION
+========================================== */
 
 function openInvitation() {
 
-  if (isOpen) return;
+  if (invitationOpen) {
+    return;
+  }
 
-  isOpen = true;
+  invitationOpen = true;
+
 
   /*
-    STEP 1
-    Sigillo e nastro scompaiono
+    Avvia il dispiegamento
+    verticale dei pannelli.
   */
 
-  envelope.classList.add("open");
-
-  openButton.style.opacity = "0";
+  invitation.classList.add(
+    "open"
+  );
 
 
   /*
-    STEP 2
-    Mostra RSVP dopo
-    l'animazione dell'invito
+    Dopo l'apertura completa
+    compare RSVP.
   */
 
   setTimeout(() => {
 
-    rsvp.classList.add("visible");
+    rsvp.classList.add(
+      "visible"
+    );
 
-  }, 2200);
+  }, 2400);
+
+
+  /*
+    Scroll morbido per seguire
+    l'apertura dell'invito.
+  */
+
+  setTimeout(() => {
+
+    invitation.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+  }, 450);
 
 }
 
 
-/* =========================
-   EVENTI
-========================= */
-
-waxSeal.addEventListener(
-  "click",
-  openInvitation
-);
+/* ==========================================
+   BUTTON
+========================================== */
 
 openButton.addEventListener(
   "click",
@@ -60,20 +90,22 @@ openButton.addEventListener(
 );
 
 
-/* =========================
+/* ==========================================
    WHATSAPP
-========================= */
+========================================== */
 
 /*
-  Inserire qui il numero
-  della sposa.
+  Sostituire con il numero
+  reale della sposa.
 
-  IMPORTANTE:
-  prefisso internazionale
-  senza + e senza spazi.
+  Formato:
 
-  Esempio:
-  393331234567
+  39 + numero
+
+  SENZA:
+  +
+  spazi
+  trattini
 */
 
 const bridePhone =
@@ -81,7 +113,7 @@ const bridePhone =
 
 
 const whatsappMessage =
-  `Ciao! Confermo con piacere la mia presenza al vostro matrimonio del 6 giugno 2027.`;
+  `Ciao! Confermo con piacere la mia presenza al matrimonio del 6 giugno 2027.`;
 
 
 const encodedMessage =
