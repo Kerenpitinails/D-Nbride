@@ -1,84 +1,786 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daniel & Noa — Partecipazione di Matrimonio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-</head>
-<body>
+/* =========================
+   RESET
+========================= */
 
-    <div class="scene">
-        <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
-            
-            <!-- BUSTA ESTERNA CON NASTRO E SIGILLO D&N -->
-            <div class="envelope">
-                <div class="flap"></div>
-                <div class="pocket"></div>
-                <div class="ribbon-silk"></div>
-                <div class="wax-seal">
-                    <span class="seal-initials">D & N</span>
-                </div>
-                <div class="click-hint">Tocca per aprire l'invito</div>
-            </div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-            <!-- PARTECIPAZIONE INTERNA A 3 PANNELLI VERTICALI -->
-            <div class="invitation-card">
-                <div class="paper-texture"></div>
+html {
+  scroll-behavior: smooth;
+}
 
-                <!-- PANNELLO 1: INTESTAZIONE -->
-                <div class="panel panel-top">
-                    <p class="monogram">D & N</p>
-                    <p class="sub-title">Siamo felici di annunciarvi il nostro matrimonio</p>
-                    <h1 class="names">Daniel <span class="ampersand">&</span> Noa</h1>
-                    <div class="divider">❖</div>
-                </div>
+body {
+  background:
+    radial-gradient(
+      circle at center,
+      #f8f5ef 0%,
+      #eee9e0 100%
+    );
 
-                <!-- PANNELLO 2: EVENTO E CERIMONIA -->
-                <div class="panel panel-middle">
-                    <p class="day">Domenica</p>
-                    <p class="date">6 Giugno 2027</p>
-                    <p class="time">Ore 17:00</p>
-                    
-                    <div class="venue-info">
-                        <p class="venue-name">Villa dei Desideri</p>
-                        <p class="venue-location">Cerveteri (Roma)</p>
-                    </div>
-                    <div class="divider">❖</div>
-                </div>
+  color: #403a34;
 
-                <!-- PANNELLO 3: BENEDIZIONE EBRAICA E RSVP -->
-                <div class="panel panel-bottom">
-                    <div class="hebrew-blessing">
-                        <p class="hebrew-text">קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה, קוֹל חָתָן וְקוֹל כַּלָּה</p>
-                        <p class="blessing-translation">"Il suono di gioia e il suono di allegria, la voce dello sposo e la voce della sposa"</p>
-                    </div>
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
 
-                    <div class="rsvp-section">
-                        <p class="rsvp-text">È gradita gentile conferma entro il 1° Maggio 2027</p>
-                        <a href="https://wa.me/393517141553?text=Ciao%20Daniel%20e%20Noa!%20Confermo%20con%20gioia%20la%20mia%20presenza%20al%20vostro%20matrimonio!" target="_blank" class="rsvp-button">
-                            CONFERMA PRESENZA (RSVP)
-                        </a>
-                    </div>
-                </div>
+  min-height: 100vh;
 
-            </div>
+  overflow-x: hidden;
+}
 
-        </div>
-    </div>
 
-    <script>
-        function openEnvelope() {
-            document.getElementById('envelopeWrapper').classList.add('is-open');
-        }
+/* =========================
+   PAGINA
+========================= */
 
-        // Apertura automatica dopo 1.2 secondi dall'accesso al link
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                openEnvelope();
-            }, 1200);
-        });
-    </script>
-</body>
-</html>
+.wedding-page {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 60px 20px 100px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.intro-small,
+.small-label {
+  font-size: 11px;
+  letter-spacing: 0.35em;
+  font-weight: 500;
+}
+
+.intro-title {
+  font-family: "Italiana", serif;
+
+  font-size: clamp(38px, 6vw, 64px);
+
+  font-weight: 400;
+
+  letter-spacing: 0.08em;
+
+  margin: 15px 0 10px;
+}
+
+.intro-text {
+  font-size: 17px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+
+/* =========================
+   SCENA
+========================= */
+
+.invitation-scene {
+  width: 100%;
+
+  min-height: 650px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  perspective: 1600px;
+}
+
+
+/* =========================
+   BUSTA
+========================= */
+
+.envelope {
+  position: relative;
+
+  width: min(650px, 88vw);
+
+  aspect-ratio: 1.55 / 1;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.2s cubic-bezier(.65, 0, .35, 1);
+
+  filter:
+    drop-shadow(0 30px 30px rgba(48, 40, 32, 0.15));
+}
+
+
+/* =========================
+   CARTA
+========================= */
+
+.envelope-back {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f8f5ed,
+      #ebe5da
+    );
+
+  border: 1px solid rgba(80, 65, 50, 0.08);
+
+  z-index: 1;
+}
+
+
+/* =========================
+   PATTA
+========================= */
+
+.flap {
+  position: absolute;
+
+  width: 100%;
+  height: 58%;
+
+  top: 0;
+  left: 0;
+
+  background:
+    linear-gradient(
+      160deg,
+      #f7f3eb,
+      #e8e1d5
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      50% 100%
+    );
+
+  transform-origin: top;
+
+  z-index: 8;
+
+  transition:
+    transform 1.2s
+    cubic-bezier(.65, 0, .35, 1);
+
+  backface-visibility: hidden;
+}
+
+
+/* =========================
+   FRONTE BUSTA
+========================= */
+
+.envelope-front {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 6;
+
+  pointer-events: none;
+}
+
+.front-left {
+  position: absolute;
+
+  inset: 0;
+
+  background: #eee8dc;
+
+  clip-path:
+    polygon(
+      0 0,
+      50% 50%,
+      0 100%
+    );
+}
+
+.front-right {
+  position: absolute;
+
+  inset: 0;
+
+  background: #e8e1d5;
+
+  clip-path:
+    polygon(
+      100% 0,
+      50% 50%,
+      100% 100%
+    );
+}
+
+.front-bottom {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      #f3eee4,
+      #e8e0d3
+    );
+
+  clip-path:
+    polygon(
+      0 100%,
+      50% 48%,
+      100% 100%
+    );
+}
+
+
+/* =========================
+   NASTRO
+========================= */
+
+.ribbon {
+  position: absolute;
+
+  z-index: 10;
+
+  background:
+    linear-gradient(
+      90deg,
+      #cbb995,
+      #eadfc8 25%,
+      #c8b48e 50%,
+      #eee4d0 75%,
+      #c6b28b
+    );
+
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,.8),
+    inset 0 -2px 4px rgba(90,70,45,.15);
+
+  transition:
+    transform 1s ease,
+    opacity .7s ease;
+}
+
+.ribbon-horizontal {
+  width: 100%;
+  height: 46px;
+
+  left: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+}
+
+.ribbon-vertical {
+  width: 46px;
+  height: 100%;
+
+  left: 50%;
+  top: 0;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      #bba67f,
+      #eee2c9,
+      #b9a27b
+    );
+}
+
+
+/* =========================
+   CERALACCA
+========================= */
+
+.wax-seal {
+  position: absolute;
+
+  width: 92px;
+  height: 92px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-5deg);
+
+  border: none;
+
+  border-radius:
+    47% 53% 45% 55% /
+    54% 46% 54% 46%;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #8d6650,
+      #654433 55%,
+      #4c3024 100%
+    );
+
+  box-shadow:
+    0 8px 15px rgba(55,35,25,.35),
+    inset 2px 2px 4px rgba(255,255,255,.15),
+    inset -3px -3px 7px rgba(35,20,15,.3);
+
+  z-index: 12;
+
+  cursor: pointer;
+
+  color: #d7c1a8;
+
+  transition:
+    transform .8s ease,
+    opacity .5s ease;
+}
+
+.seal-border {
+  position: absolute;
+
+  inset: 12px;
+
+  border:
+    1px solid
+    rgba(224, 199, 169, .55);
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Italiana", serif;
+
+  font-size: 16px;
+
+  letter-spacing: .08em;
+}
+
+
+/* =========================
+   INVITO INTERNO
+========================= */
+
+.invitation {
+  position: absolute;
+
+  width: 138%;
+  height: 94%;
+
+  left: -19%;
+  top: 3%;
+
+  display: flex;
+
+  transform:
+    translateY(20%)
+    scale(.68);
+
+  opacity: 0;
+
+  z-index: 3;
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.5s
+    cubic-bezier(.22,1,.36,1),
+    opacity .7s ease;
+}
+
+
+/* =========================
+   PANNELLI
+========================= */
+
+.panel {
+  position: relative;
+
+  width: 33.333%;
+  height: 100%;
+
+  padding: 35px 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffdf8,
+      #f3eee5
+    );
+
+  border:
+    1px solid
+    rgba(85, 70, 50, .09);
+
+  box-shadow:
+    inset 0 0 30px
+    rgba(80,60,40,.025);
+
+  transform-style: preserve-3d;
+
+  transition:
+    transform 1.3s
+    cubic-bezier(.22,1,.36,1);
+}
+
+.panel-left {
+  transform-origin: right;
+  transform: rotateY(90deg);
+}
+
+.panel-right {
+  transform-origin: left;
+  transform: rotateY(-90deg);
+}
+
+.panel-center {
+  z-index: 2;
+}
+
+.panel-content {
+  max-width: 230px;
+}
+
+
+/* =========================
+   TIPOGRAFIA INVITO
+========================= */
+
+.monogram {
+  font-family: "Italiana", serif;
+
+  font-size: 52px;
+
+  margin: 25px 0;
+}
+
+.monogram span {
+  display: block;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-style: italic;
+
+  font-size: 25px;
+
+  margin: -8px 0;
+}
+
+.couple-name {
+  font-family: "Italiana", serif;
+
+  font-weight: 400;
+
+  font-size: 34px;
+
+  line-height: 1.15;
+
+  margin: 25px 0 18px;
+}
+
+.couple-name span {
+  display: block;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 24px;
+
+  font-style: italic;
+
+  margin: 5px;
+}
+
+.ornament {
+  margin: 15px;
+  font-size: 12px;
+}
+
+.date {
+  font-size: 23px;
+
+  margin-top: 18px;
+}
+
+.time {
+  font-size: 15px;
+
+  margin-top: 4px;
+}
+
+.location {
+  margin-top: 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.location strong {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.location span {
+  font-size: 14px;
+  letter-spacing: .08em;
+}
+
+.quote {
+  font-size: 22px;
+  font-style: italic;
+  line-height: 1.4;
+
+  margin: 30px 0;
+}
+
+.small-copy {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.divider {
+  width: 35px;
+  height: 1px;
+
+  margin: 25px auto;
+
+  background: #8d7d69;
+}
+
+
+/* =========================
+   PULSANTE APERTURA
+========================= */
+
+.open-label {
+  margin-top: 45px;
+
+  border: none;
+  background: transparent;
+
+  color: #51483f;
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size: 12px;
+
+  letter-spacing: .3em;
+
+  cursor: pointer;
+
+  transition:
+    opacity .4s ease;
+}
+
+
+/* =========================
+   STATO APERTO
+========================= */
+
+.envelope.open .wax-seal {
+  transform:
+    translate(-50%, -50%)
+    scale(.3)
+    rotate(35deg);
+
+  opacity: 0;
+}
+
+.envelope.open .ribbon-horizontal {
+  transform:
+    translateY(-50%)
+    scaleX(1.3);
+
+  opacity: 0;
+}
+
+.envelope.open .ribbon-vertical {
+  transform:
+    translateX(-50%)
+    scaleY(1.3);
+
+  opacity: 0;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+
+  z-index: 0;
+}
+
+.envelope.open .invitation {
+  transform:
+    translateY(-42%)
+    scale(1);
+
+  opacity: 1;
+
+  z-index: 20;
+}
+
+.envelope.open .panel-left,
+.envelope.open .panel-right {
+  transform: rotateY(0);
+}
+
+
+/* =========================
+   RSVP
+========================= */
+
+.rsvp {
+  width: min(600px, 90vw);
+
+  margin:
+    130px auto
+    0;
+
+  text-align: center;
+
+  opacity: 0;
+
+  transform:
+    translateY(30px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+
+.rsvp.visible {
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+  pointer-events: auto;
+}
+
+.rsvp h2 {
+  font-family: "Italiana", serif;
+
+  font-size: 40px;
+
+  font-weight: 400;
+
+  margin: 15px 0;
+}
+
+.rsvp p {
+  max-width: 430px;
+
+  margin: 0 auto;
+
+  font-size: 18px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================
+   WHATSAPP
+========================= */
+
+.whatsapp-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 55px;
+
+  padding: 0 35px;
+
+  margin-top: 35px;
+
+  border:
+    1px solid
+    #554a3f;
+
+  color: #554a3f;
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  letter-spacing: .22em;
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+.whatsapp-button:hover {
+  background: #554a3f;
+  color: #fff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .wedding-page {
+    padding-top: 40px;
+  }
+
+  .intro {
+    margin-bottom: 25px;
+  }
+
+  .invitation-scene {
+    min-height: 600px;
+  }
+
+  .envelope {
+    width: 92vw;
+  }
+
+  .envelope.open {
+    transform:
+      translateY(100px)
+      rotate(90deg)
+      scale(.72);
+  }
+
+  .rsvp {
+    margin-top: 80px;
+  }
+
+}
